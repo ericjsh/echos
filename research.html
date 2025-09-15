@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="SNU AGN & Galaxy — Research areas: galaxy morphology, M–σ relation, AGN outflows, redshift measurement, BLR, accretion disks, and changing-look AGN.">
+  <meta name="theme-color" content="#0a84ff">
+  <title>SNU ECHOS — Research</title>
+  <link rel="icon" type="image/favicon" href="favicon.ico">
+  <style>
+
+    /* ------------------ Tokens ------------------ */
+    :root{
+      --bg: #ffffff;
+      --ink: #0b0f14;
+      --ink-weak: #697582;
+      --bg-inv: #0b0f14;
+      --ink-inv: #f2f5f8;
+      --ink-inv-weak: #c8d0da;
+      --blue: #0a84ff;
+      --blue-ink: #0056b8;
+      --hairline: rgba(11,15,20,.12);
+      --hairline-strong: rgba(11,15,20,.18);
+
+      --font: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+      --measure: 68ch;
+      --step--1: 14px; --step-0: 17px; --step-1: clamp(20px, 2.2vw, 22px);
+      --step-2: clamp(26px, 3.6vw, 32px); --step-3: clamp(34px, 5.2vw, 44px);
+
+      --space-1: 8px; --space-2: 12px; --space-3: 18px; --space-4: 28px; --space-5: 44px; --space-6: 72px;
+      --r-lg: 20px; --r-md: 14px; --r-sm: 10px;
+      --elev: 0 6px 24px rgba(0,0,0,.08);
+
+      /* Nav / hamburger */
+      --nav-h: 64px;
+      --ham-btn: 40px;
+      --ham-w: 16px;
+      --ham-h: 2px;
+      --ham-gap: 6px;
+      --ham-nudge-y: -1px;
+    }
+
+    /* ------------------ Base ------------------ */
+    *{ box-sizing: border-box }
+    html,body{ height:100% }
+    html{ scroll-behavior:smooth }
+    body{
+      margin:0; background: var(--bg); color: var(--ink);
+      font-family: var(--font); font-size: var(--step-0); line-height: 1.75;
+      -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+      padding-top: var(--nav-h);
+    }
+    img{ max-width:100%; display:block }
+    a{ color: var(--blue); text-decoration: none }
+    a:hover{ color: var(--blue-ink) }
+
+    .container{ width:min(1140px, 92vw); margin-inline:auto }
+    .wide{ width:min(1320px, 94vw); margin-inline:auto }
+
+    /* ------------------ Header / Nav (fixed + mobile) ------------------ */
+    .site-header{
+      position: fixed; top:0; left:0; right:0; z-index:999;
+      backdrop-filter: saturate(1.1) blur(10px);
+      background: rgba(255,255,255,.85);
+      border-bottom: 1px solid var(--hairline);
+      box-shadow: 0 6px 18px rgba(0,0,0,.06);
+    }
+    .nav-inner{ height: var(--nav-h); display:flex; align-items:center; justify-content:space-between; gap:16px; }
+    .brand{ display:flex; align-items:center; gap:10px; color: var(--ink); font-weight:800 }
+    .brand-mark{ width:120px; height:60px; border-radius:8px; background: none; display:grid; place-items:center; color:#fff; font-size:14px; letter-spacing:.5px }
+    .brand-text{ letter-spacing:.2px }
+
+    .nav{ display:flex; align-items:center; gap:18px }
+    .nav a{ color: var(--ink); opacity:.9; padding:8px 10px; border-radius:10px }
+    .nav a:hover{ background: rgba(11,15,20,.05) }
+    .nav .active{ background: rgba(11,15,20,.06) }
+
+    .nav-toggle{ position:absolute; left:-9999px }
+    .hamburger{
+      width: var(--ham-btn); height: var(--ham-btn);
+      position: relative; line-height:0; overflow: visible; display:none;
+      border:1px solid var(--hairline); border-radius:10px;
+      background: rgba(255,255,255,.8); backdrop-filter: blur(8px); cursor:pointer;
+    }
+    .hamburger span{
+      position:absolute; left:50%; top:50%;
+      width: var(--ham-w); height: var(--ham-h); background: var(--ink);
+      border-radius:1px; transition: transform .22s ease, opacity .18s ease;
+      transform: translate(-50%, calc(-50% + var(--ham-nudge-y)));
+    }
+    .hamburger span:nth-child(1){ transform: translate(-50%, calc(-50% - var(--ham-gap) + var(--ham-nudge-y))); }
+    .hamburger span:nth-child(3){ transform: translate(-50%, calc(-50% + var(--ham-gap) + var(--ham-nudge-y))); }
+    #nav-toggle:checked + .hamburger span:nth-child(1){ transform: translate(-50%, calc(-50% + var(--ham-nudge-y))) rotate(45deg); }
+    #nav-toggle:checked + .hamburger span:nth-child(2){ opacity:0 }
+    #nav-toggle:checked + .hamburger span:nth-child(3){ transform: translate(-50%, calc(-50% + var(--ham-nudge-y))) rotate(-45deg); }
+
+    @media (max-width: 860px){
+      .hamburger{ display:grid; place-content:center; }
+      .nav{
+        position: fixed; top: calc(var(--nav-h) + 8px); left:12px; right:12px;
+        display:none; flex-direction:column; gap:0;
+        background: rgba(255,255,255,.98); border:1px solid var(--hairline);
+        border-radius:14px; box-shadow: var(--elev); padding:8px;
+        max-height: calc(100vh - var(--nav-h) - 24px); overflow:auto; z-index:998;
+      }
+      #nav-toggle:checked ~ .nav{ display:flex }
+      .nav a{ display:block; padding:14px 12px; margin:2px 0 }
+    }
+
+    /* ------------------ Page Intro ------------------ */
+    .page-hero{ padding: var(--space-6) 0 var(--space-4); border-bottom:1px solid var(--hairline) }
+    .page-hero h1{ font-size: var(--step-3); margin:0 0 10px }
+    .page-hero p{ color: var(--ink-weak); margin:0; max-width: var(--measure) }
+
+    /* ------------------ Tiles (same pattern as home) ------------------ */
+    .tiles{ display:grid; grid-template-columns: 1fr; gap: var(--space-6); margin: var(--space-5) 0 }
+    .tile{ border: 1px solid var(--hairline); border-radius: var(--r-lg); overflow:hidden; background: #fff ; box-shadow: 0 6px 24px rgba(0,0,0,.08);}
+    .tile.dark{ background: var(--bg-inv); color: var(--ink-inv); border-color: rgba(255,255,255,.08) }
+    .tile-wrap{ display:grid; grid-template-columns: 1.15fr .85fr; gap:0 }
+    @media (max-width: 1100px){ .tile-wrap{ grid-template-columns: 1fr } }
+
+    .tile-copy{ padding: clamp(28px, 4.5vw, 56px) }
+    .eyebrow{ font-size: var(--step--1); text-transform: uppercase; letter-spacing: .18em; color: var(--ink-weak) }
+    .eyebrow-noup{ font-size: var(--step--1); letter-spacing: .18em; color: var(--ink-weak) }
+
+    .tile.dark .eyebrow{ color: var(--ink-inv-weak) }
+    .tile.dark .eyebrow-noup{ color: var(--ink-inv-weak) }
+    .tile h2{ font-size: var(--step-2); line-height:1.12; margin: 10px 0 12px }
+    .tile p{ color: var(--ink-weak); margin:0 0 14px }
+    .tile.dark p{ color: var(--ink-inv-weak) }
+
+    /* ===== Visuals with info/popover captions ===== */
+    /* Remove default <figure> margins used by browsers */
+    .tile-visual { 
+      margin: 0;                /* was default 1em 40px */
+      min-height: 360px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    .tile-visual.is-white{ background-color:#f4f7fa }
+
+    .cap-btn{
+      position:absolute; right:.6rem; bottom:.6rem;
+      width:32px; height:32px; border:0; border-radius:999px; cursor:pointer;
+      background: rgba(0,0,0,.6); color:#fff; display:grid; place-items:center;
+      font-weight:700; line-height:1; box-shadow: 0 2px 10px rgba(0,0,0,.25);
+    }
+    .tile.dark .cap-btn{ background: rgba(255,255,255,.25); color:#fff }
+    .cap-btn:hover, .cap-btn:focus{ outline:2px solid rgba(255,255,255,.6) }
+
+    dialog.cap-pop{ max-width:min(480px, 92vw); border:1px solid var(--hairline-strong); border-radius:12px; padding:16px; }
+    dialog.cap-pop::backdrop{ background: rgba(0,0,0,.35) }
+    .cap-pop .cap-title{ font-weight:700; margin:0 0 6px; }
+    .cap-pop .cap-meta{ margin:0 0 10px; color: var(--ink-weak) }
+    .cap-pop a{ color: var(--blue); text-decoration: underline }
+    .cap-pop form{ display:flex; justify-content:flex-end }
+
+    .pill{ display:inline-block; padding:6px 12px; border-radius:999px; border:1px solid var(--hairline); background:#fff; color:#2b2f35; font-weight:700; font-size: var(--step--1) }
+    .pill.inv{ background: transparent; color: var(--ink-inv); border-color: rgba(255,255,255,.22) }
+
+    .bullets{ margin: 10px 0 0; padding-left: 18px }
+    .bullets li{ margin: 6px 0 }
+
+    .back-row{ margin-top: var(--space-5); border-top:1px solid var(--hairline); padding-top: 18px; display:flex; justify-content: space-between; align-items:center; color: var(--ink-weak) ; font-size: 10pt;}
+
+
+    /* ------------------ Footer (dark, centered, two rows) ------------------ */
+    .site-footer{
+      background: var(--bg-inv);
+      color: var(--ink-inv);
+      border-top: 1px solid rgba(255,255,255,.08);
+      margin-top: var(--space-6);
+    }
+    /* MATCH THE WIDE WIDTH (like your .wide sections) */
+    .site-footer .footer-inner{
+      width: min(1320px, 94vw);        /* << widened from 1140px */
+      margin-inline: auto;
+      padding: 22px 0;
+      display: grid;
+      grid-template-rows: auto auto;   /* brand row + microfooter row */
+      row-gap: 16px;
+    }
+    /* Center the brand block itself */
+    .foot-brand{
+      display: flex;
+      justify-content: center;         /* centers the logo+text as a group */
+      align-items: flex-start;
+      gap: 20px;
+      width: 100%;
+    }
+    .foot-logo{ width: 90px; height: auto; display:block; }
+    .foot-brand-text address{ margin:6px 0; font-style: normal; color: var(--ink-inv-weak); }
+    .site-footer a{ color: var(--ink-inv); text-decoration: none; opacity: .95 }
+    .site-footer a:hover{ opacity: 1 }
+
+    /* Microfooter: full width, centered items */
+    .microfooter{
+      border-top: 1px solid rgba(255,255,255,.12);
+      padding-top: 10px;
+      display: flex;
+      width: 100%;                     /* ensure it spans the footer width */
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      color: var(--ink-inv-weak);
+      text-align: center;
+    }
+    @media (max-width: 680px){
+      .foot-logo{ width: 64px; }
+    }
+
+    /* Align research tiles with the main page column */
+    .wide.tiles{ width: min(1140px, 92vw) !important; margin-inline: auto; }
+
+    /* ===== Sticky TOC + two-column layout (left TOC, right tiles) ===== */
+    :root{
+      --toc-w: 260px;        /* sidebar width on desktop */
+      --gap-xl: 28px;        /* space between TOC and tiles */
+    }
+    .research-layout{
+      display: grid;
+      grid-template-columns: minmax(220px, var(--toc-w)) 1fr;
+      column-gap: var(--gap-xl);
+      align-items: start;
+      margin: var(--space-5) auto;
+    }
+    .research-layout .wide.tiles{
+      width: auto !important;
+      margin: 0;
+    }
+    .toc{
+      position: sticky;
+      top: calc(var(--nav-h) + 16px);
+      align-self: start;
+      width: var(--toc-w);
+      border: 1px solid var(--hairline);
+      border-radius: 14px;
+      padding: 16px;
+      background: #fff;
+      box-shadow: var(--elev);
+    }
+    .toc h3{
+      margin: 0 0 8px;
+      font-size: 15px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #48515b;
+    }
+    .toc a{
+      display: block;
+      padding: 10px 8px;
+      border-radius: 10px;
+      color: var(--ink);
+    }
+    .toc a:hover{ background: rgba(11,15,20,.05); }
+    .toc small{ color: var(--ink-weak); display:block; margin-top:6px }
+
+    @media (max-width: 980px){
+      .research-layout{ grid-template-columns: 1fr; }
+      .toc{
+        position: static;
+        width: auto;
+        display: flex; flex-wrap: wrap; gap: 8px;
+        padding: 10px;
+      }
+      .toc a{
+        display: inline-block;
+        padding: 8px 10px;
+        border: 1px solid var(--hairline);
+      }
+    }
+    /* Mobile: give the TOC breathing room below it */
+    @media (max-width: 980px){
+    .toc{
+        margin-bottom: var(--space-4); /* adjust: var(--space-3|4|5) */
+    }
+    }
+
+  </style>
+</head>
+<body>
+  <!-- ====================== NAV ====================== -->
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html" aria-label="Go to home">
+        <span class="brand-mark"><img src="snuecho_banner_design.001.png" alt="M"></span>
+      </a>
+
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">
+      <label for="nav-toggle" class="hamburger" aria-label="Open menu"><span></span><span></span><span></span></label>
+
+      <nav id="primary-nav" class="nav" aria-label="Primary">
+        <a class="active" href="research.html">Research</a>
+        <a href="projects.html">Projects</a>
+        <a href="people.html">People</a>
+        <a href="publications.html">Publications</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ====================== PAGE HERO ====================== -->
+    <section class="page-hero">
+      <div class="container">
+        <h1>Research</h1>
+        <p>Our group investigates the physics of active galactic nuclei and evolution of galaxies through time-domain analyses, spectroscopy, and robust inference. Below are our focus areas.</p>
+      </div>
+    </section>
+
+    <!-- ====================== STICKY TOC + RESEARCH TILES ====================== -->
+    <div class="container research-layout">
+      <aside class="toc" aria-label="Topics">
+        <h3>Topics</h3>
+        <small>AGN PHYSICS</small>
+        <a href="#central-engine">Central Engine</a>
+        <a href="#bh-mass">BH Mass & Growth</a>
+        <a href="#evolution">AGN Evolution</a>
+        <small>GALAXY EVOLUTION</small>
+        <a href="#feedback">AGN Feedback</a>
+        <a href="#sf-history">SF History</a>
+        <a href="#dust-torus">Environment</a>
+        <small>Tap a topic to jump.</small>
+      </aside>
+
+      <div class="wide tiles">
+
+        <!-- AGN: Accretion Disks -->
+        <section id="central-engine" class="tile">
+          <div class="tile-wrap">
+            <div class="tile-copy">
+              <span class="eyebrow">AGN PHYSICS</span>
+              <h2>Central Engine</h2>
+              <p>Probes the structure, size, and emission physics of SMBH at the center of galaxy by analyzing multi-wavelength/line variability.</p>
+              <ul class="bullets">
+                <li>Size and structure of the BLR.</li>
+                <li>Testing disk models: standard thin-disk, diffuse BLR contribution, lamp-post, etc.</li>
+                <li>Formation and structure of dust torus.</li>
+              </ul>
+              <div class="link-row" style="margin-top:12px">
+                <span class="pill">Reverberation Mapping</span>
+                <span class="pill">Fourier Analysis</span>
+              </div>
+            </div>
+            <figure class="tile-visual is-white" style="background-image:url('img/research_accretion_disk.jpg')" aria-label="Accretion disk illustration">
+              <button class="cap-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="cap-accretion" aria-label="Image credit: Accretion Disks">ⓘ</button>
+              <dialog id="cap-accretion" class="cap-pop">
+                <p class="cap-title">Artist’s impression of NGC 3147 black hole disc</p>
+                <p class="cap-meta">
+                  ESA/Hubble, M. Kornmesser —
+                  <a href="https://sci.esa.int/web/hubble/-/61447-artist-impression-of-ngc3147-black-hole-disc">Source</a> —
+                  <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
+                  <em>Changes:</em> none
+                </p>
+                <form method="dialog"><button>Close</button></form>
+              </dialog>
+            </figure>
+          </div>
+        </section>
+
+        <!-- BH Mass & Growth -->
+        <section id="bh-mass" class="tile dark">
+          <div class="tile-wrap">
+            <div class="tile-copy">
+              <span class="eyebrow">AGN PHYSICS</span>
+              <h2>Black Hole Mass & Growth</h2>
+              <p>Precisely measuring black hole masses based on reverberation mapping and tracking the growth history.</p>
+              <ul class="bullets">
+                <li>Spectroscopic emission line reverberation mapping.</li>
+                <li>Calibration of single epoch mass estimates based on the fundamental plane.</li>
+                <li>Re-analyzing black hole growth through reverberation mapped masses.</li>
+              </ul>
+              <div class="link-row" style="margin-top:12px">
+                <span class="pill inv">Fundamental Plane</span>
+                <span class="pill inv">Scaling Laws</span>
+              </div>
+            </div>
+            <figure class="tile-visual is-white" style="background-image:url('img/research_feedback.jpg')" aria-label="AGN jet rendering">
+              <button class="cap-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="cap-feedback" aria-label="Image credit: AGN Feedback">ⓘ</button>
+              <dialog id="cap-feedback" class="cap-pop">
+                <p class="cap-title">Feedback from AGN-driven Winds</p>
+                <p class="cap-meta">
+                  ESA/Hubble, L. Calçada (ESO) — 
+                  <a href="https://aasnova.org/2020/09/25/gone-with-the-agn-driven-wind/#prettyPhoto">Source</a> — 
+                  <a href="https://esahubble.org/copyright/">CC BY 4.0</a></p>
+                  <em>Changes:</em> none
+                <form method="dialog"><button>Close</button></form>
+              </dialog>
+            </figure>
+          </div>
+        </section>
+
+        <!-- AGN Evolution -->
+        <section id="evolution" class="tile">
+          <div class="tile-wrap">
+            <div class="tile-copy">
+              <span class="eyebrow-noup">AGN PHYSICS</span>
+              <h2>AGN Evolution</h2>
+              <p>Traces how the central engine of galaxies, the AGNs, have formed and evolved over time and appear as they are of today.</p>
+              <ul class="bullets">
+                <li>Black hole seeds estimates compared to Eddington limited growths.</li>
+                <li>Understanding the viscous, dynamic, and thermal timescales via Changing-look AGNs .</li>
+                <li>Testing cosmological models based on co-evolution of black holes and galaxies.</li>
+              </ul>
+              <div class="link-row" style="margin-top:12px">
+                <span class="pill">Reverberation Mapping</span>
+                <span class="pill">Kinematics</span>
+              </div>
+            </div>
+            <figure class="tile-visual is-white" style="background-image:url('img/agn_blr.jpg')" aria-label="BLR concept illustration">
+              <button class="cap-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="cap-blr" aria-label="Image credit: Broad Line Region">ⓘ</button>
+              <dialog id="cap-blr" class="cap-pop">
+                <p class="cap-title">Artist's impression of an Active Galactic Nucleus</p>
+                <p class="cap-meta">
+                  ESA/NASA, the AVO project and Paolo Padovani — 
+                  <a href="https://sci.esa.int/web/integral/-/49029-the-unified-model-of-agn">Source</a> — 
+                  <a href="https://esahubble.org/copyright/">CC BY 4.0</a></p>
+                  <em>Changes:</em> none
+                <form method="dialog"><button>Close</button></form>
+              </dialog>
+            </figure>
+          </div>
+        </section>
+
+        <!-- AGN Feedback -->
+        <section id="feedback" class="tile dark">
+          <div class="tile-wrap">
+            <div class="tile-copy">
+              <span class="eyebrow-noup">GALAXY EVOLUTION</span>
+              <h2>AGN Feedback</h2>
+              <p>Unraveling the role of AGN activity (e.g., radiation, outflows, and jets) in regulating star formation in host galaxies.</p>
+              <ul class="bullets">
+                <li>Outflow kinematics and energetics from integral field spectroscopy.</li>
+                <li>Star formation in AGN host galaxies based on SED analysis.</li>
+                <li>AGN feedback in post-starburst galaxies or mergers.</li>
+              </ul>
+              <div class="link-row" style="margin-top:12px">
+                <span class="pill inv">Time Series Analysis</span>
+                <span class="pill inv">Identification</span>
+              </div>
+            </div>
+            <figure class="tile-visual is-white" style="background-image:url('supermassive-black-hole.webp')" aria-label="Changing-look AGN concept art">
+              <button class="cap-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="cap-clagn" aria-label="Image credit: Changing-Look AGN">ⓘ</button>
+              <dialog id="cap-clagn" class="cap-pop">
+                <p class="cap-title">[Changing-Look AGN — title]</p>
+                <p class="cap-meta">Credit: [Creator / Institution] — <a href="#">Source</a> — <a href="#">License</a></p>
+                <form method="dialog"><button>Close</button></form>
+              </dialog>
+            </figure>
+          </div>
+        </section>
+
+        <!-- Star Formation History -->
+        <section id="sf-history" class="tile">
+          <div class="tile-wrap">
+            <div class="tile-copy">
+              <span class="eyebrow">GALAXY EVOLUTION</span>
+              <h2>Star Formation History</h2>
+              <p>Understanding how galaxies that host active nuclei assembled, sustained, and eventually shut down their star formation over time, and how those patterns relate to black-hole growth.</p>
+              <ul class="bullets">
+                <li>Recover past star-forming episodes and quenching phases from galaxy light while separating the AGN’s contribution.</li>
+                <li>Compare the timing of bursts, lulls, and shutdowns in star formation with phases of AGN activity to probe potential links.</li>
+                <li>Assess how galaxy structure, environment, and interactions shape both star-formation histories and AGN fueling.</li>
+              </ul>
+              <div class="link-row" style="margin-top:12px">
+                <span class="pill">Galaxy Co-evolution</span>
+                <span class="pill">Standard Candles</span>
+                <span class="pill">Growth history</span>
+              </div>
+            </div>
+            <figure class="tile-visual is-white" style="background-image:url('science-cosmology-banner1.jpg')" aria-label="Cosmology banner">
+              <button class="cap-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="cap-cosmology" aria-label="Image credit: Cosmology">ⓘ</button>
+              <dialog id="cap-cosmology" class="cap-pop">
+                <p class="cap-title">[Cosmology banner — title]</p>
+                <p class="cap-meta">Credit: [Creator / Institution] — <a href="#">Source</a> — <a href="#">License</a></p>
+                <form method="dialog"><button>Close</button></form>
+              </dialog>
+            </figure>
+          </div>
+        </section>
+
+        <!-- Environment -->
+        <section id="dust-torus" class="tile dark">
+          <div class="tile-wrap">
+            <div class="tile-copy">
+              <span class="eyebrow-noup">GALAXY EVOLUTION</span>
+              <h2>Galaxy Environment</h2>
+              <p>Exploring how a galaxy’s surroundings—from close neighbors to the cosmic web—influence AGN fueling, obscuration, and the impact of feedback on star formation.</p>
+              <ul class="bullets">
+                <li>Connect AGN occurrence to local crowding and galaxy–galaxy encounters that funnel gas toward the nucleus.</li>
+                <li>Compare activity across the cosmic web—fields, filaments, groups, and clusters—to see how gas supply, stripping, and pressure shape AGN phases.</li>
+                <li>Separate environmental effects from internal properties like mass and morphology to learn when surroundings trigger or suppress black-hole growth.</li>
+              </ul>
+              <div class="link-row" style="margin-top:12px">
+                <span class="pill inv">Kinematics</span>
+                <span class="pill inv">Scaling Laws</span>
+              </div>
+            </div>
+            <figure class="tile-visual is-white" style="background-image:url('agn_dust_torus.jpg')" aria-label="Dust torus visualization">
+              <button class="cap-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="cap-dust" aria-label="Image credit: Dust Torus">ⓘ</button>
+              <dialog id="cap-dust" class="cap-pop">
+                <p class="cap-title">[Dust Torus — title]</p>
+                <p class="cap-meta">Credit: [Creator / Institution] — <a href="#">Source</a> — <a href="#">License</a></p>
+                <form method="dialog"><button>Close</button></form>
+              </dialog>
+            </figure>
+          </div>
+        </section>
+
+      </div>
+
+      <div class="back-row">
+        <a href="index.html#main" class="link">← Back to Home</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- ====================== FOOTER ====================== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+
+      <!-- Foot brand: SNU logo + group identity -->
+      <div class="foot-brand">
+        <a class="foot-logo-link" href="https://en.snu.ac.kr/" target="_blank" rel="noopener">
+          <img class="foot-logo" src="img/snu_logo.png" alt="Seoul National University logo">
+        </a>
+        <div class="foot-brand-text">
+          <strong>SNU ECHOS</strong><br>
+          AGN and Galaxy Evolution Research Group
+          <address>SNU Astronomy Program, Department of Physics and Astronomy</address>
+        </div>
+      </div>
+
+      <!-- Microfooter: compact fine print -->
+      <div class="microfooter">
+        <small>© <span id="year"></span> SNU ECHOS</small>
+        <small>Images credited in-page via ⓘ popovers</small>
+        <small>Last updated: <time id="lastmod"></time></small>
+      </div>
+
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      var y = document.getElementById('year');
+      if (y) y.textContent = new Date().getFullYear();
+      var lm = document.getElementById('lastmod');
+      if (lm) lm.textContent = new Date(document.lastModified).toISOString().slice(0,10);
+    })();
+  </script>
+
+  <!-- auto-close mobile menu when a link is tapped -->
+  <script>
+    (function(){
+      var t = document.getElementById('nav-toggle'); if(!t) return;
+      document.querySelectorAll('#primary-nav a').forEach(function(a){ a.addEventListener('click', function(){ t.checked = false; }); });
+    })();
+
+    // Info badge popovers
+    (function(){
+      document.querySelectorAll('.cap-btn').forEach(function(btn){
+        var id = btn.getAttribute('aria-controls');
+        var dlg = document.getElementById(id);
+        if(!dlg) return;
+        btn.addEventListener('click', function(){
+          if(!dlg.open){ dlg.showModal(); btn.setAttribute('aria-expanded','true'); }
+          else { dlg.close(); btn.setAttribute('aria-expanded','false'); }
+        });
+        dlg.addEventListener('close', function(){ btn.setAttribute('aria-expanded','false'); });
+      });
+    })();
+  </script>
+</body>
+</html>

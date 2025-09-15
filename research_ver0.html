@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="SNU AGN & Galaxy — Research areas: galaxy morphology, M–σ relation, AGN outflows, redshift measurement, BLR, accretion disks, and changing-look AGN.">
+  <meta name="theme-color" content="#0a84ff">
+  <title>SNU AGN & Galaxy — Research</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* =====================================================
+       SNU AGN & Galaxy — Research (Apple-style)
+       Matches homepage/people pages; fixed header + mobile menu
+       ===================================================== */
+
+    /* ------------------ Tokens ------------------ */
+    :root{
+      --bg: #ffffff;
+      --ink: #0b0f14;
+      --ink-weak: #697582;
+      --bg-inv: #0b0f14;
+      --ink-inv: #f2f5f8;
+      --ink-inv-weak: #c8d0da;
+      --blue: #0a84ff;
+      --blue-ink: #0056b8;
+      --hairline: rgba(11,15,20,.12);
+      --hairline-strong: rgba(11,15,20,.18);
+
+      --font: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+      --measure: 68ch;
+      --step--1: 14px; --step-0: 17px; --step-1: clamp(20px, 2.2vw, 22px);
+      --step-2: clamp(26px, 3.6vw, 32px); --step-3: clamp(34px, 5.2vw, 44px);
+
+      --space-1: 8px; --space-2: 12px; --space-3: 18px; --space-4: 28px; --space-5: 44px; --space-6: 72px;
+      --r-lg: 20px; --r-md: 14px; --r-sm: 10px;
+      --elev: 0 6px 24px rgba(0,0,0,.08);
+
+      /* Nav / hamburger */
+      --nav-h: 64px;
+      --ham-btn: 40px;
+      --ham-w: 16px;
+      --ham-h: 2px;
+      --ham-gap: 6px;
+      --ham-nudge-y: -1px;
+    }
+
+    /* ------------------ Base ------------------ */
+    *{ box-sizing: border-box }
+    html,body{ height:100% }
+    html{ scroll-behavior:smooth }
+    body{
+      margin:0; background: var(--bg); color: var(--ink);
+      font-family: var(--font); font-size: var(--step-0); line-height: 1.75;
+      -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+      padding-top: var(--nav-h);
+    }
+    img{ max-width:100%; display:block }
+    a{ color: var(--blue); text-decoration: none }
+    a:hover{ color: var(--blue-ink) }
+
+    .container{ width:min(1140px, 92vw); margin-inline:auto }
+    .wide{ width:min(1320px, 94vw); margin-inline:auto }
+
+    /* ------------------ Header / Nav (fixed + mobile) ------------------ */
+    .site-header{
+      position: fixed; top:0; left:0; right:0; z-index:999;
+      backdrop-filter: saturate(1.1) blur(10px);
+      background: rgba(255,255,255,.85);
+      border-bottom: 1px solid var(--hairline);
+      box-shadow: 0 6px 18px rgba(0,0,0,.06);
+    }
+    .nav-inner{ height: var(--nav-h); display:flex; align-items:center; justify-content:space-between; gap:16px; }
+    .brand{ display:flex; align-items:center; gap:10px; color: var(--ink); font-weight:800 }
+    .brand-mark{ width:28px; height:28px; border-radius:8px; background: var(--ink); display:grid; place-items:center; color:#fff; font-size:14px; letter-spacing:.5px }
+    .brand-text{ letter-spacing:.2px }
+
+    .nav{ display:flex; align-items:center; gap:18px }
+    .nav a{ color: var(--ink); opacity:.9; padding:8px 10px; border-radius:10px }
+    .nav a:hover{ background: rgba(11,15,20,.05) }
+    .nav .active{ background: rgba(11,15,20,.06) }
+
+    .nav-toggle{ position:absolute; left:-9999px }
+    .hamburger{
+      width: var(--ham-btn); height: var(--ham-btn);
+      position: relative; line-height:0; overflow: visible; display:none;
+      border:1px solid var(--hairline); border-radius:10px;
+      background: rgba(255,255,255,.8); backdrop-filter: blur(8px); cursor:pointer;
+    }
+    .hamburger span{
+      position:absolute; left:50%; top:50%;
+      width: var(--ham-w); height: var(--ham-h); background: var(--ink);
+      border-radius:1px; transition: transform .22s ease, opacity .18s ease;
+      transform: translate(-50%, calc(-50% + var(--ham-nudge-y)));
+    }
+    .hamburger span:nth-child(1){ transform: translate(-50%, calc(-50% - var(--ham-gap) + var(--ham-nudge-y))); }
+    .hamburger span:nth-child(3){ transform: translate(-50%, calc(-50% + var(--ham-gap) + var(--ham-nudge-y))); }
+    #nav-toggle:checked + .hamburger span:nth-child(1){ transform: translate(-50%, calc(-50% + var(--ham-nudge-y))) rotate(45deg); }
+    #nav-toggle:checked + .hamburger span:nth-child(2){ opacity:0 }
+    #nav-toggle:checked + .hamburger span:nth-child(3){ transform: translate(-50%, calc(-50% + var(--ham-nudge-y))) rotate(-45deg); }
+
+    @media (max-width: 860px){
+      .hamburger{ display:grid; place-content:center; }
+      .nav{
+        position: fixed; top: calc(var(--nav-h) + 8px); left:12px; right:12px;
+        display:none; flex-direction:column; gap:0;
+        background: rgba(255,255,255,.98); border:1px solid var(--hairline);
+        border-radius:14px; box-shadow: var(--elev); padding:8px;
+        max-height: calc(100vh - var(--nav-h) - 24px); overflow:auto; z-index:998;
+      }
+      #nav-toggle:checked ~ .nav{ display:flex }
+      .nav a{ display:block; padding:14px 12px; margin:2px 0 }
+    }
+
+    /* ------------------ Page Intro ------------------ */
+    .page-hero{ padding: var(--space-6) 0 var(--space-4); border-bottom:1px solid var(--hairline) }
+    .page-hero h1{ font-size: var(--step-3); margin:0 0 10px }
+    .page-hero p{ color: var(--ink-weak); margin:0; max-width: var(--measure) }
+
+    /* ------------------ Tiles (same pattern as home) ------------------ */
+    .tiles{ display:grid; grid-template-columns: 1fr; gap: var(--space-6); margin: var(--space-5) 0 }
+    .tile{ border: 1px solid var(--hairline); border-radius: var(--r-lg); overflow:hidden; background: #fff }
+    .tile.dark{ background: var(--bg-inv); color: var(--ink-inv); border-color: rgba(255,255,255,.08) }
+    .tile-wrap{ display:grid; grid-template-columns: 1.15fr .85fr; gap:0 }
+    @media (max-width: 1100px){ .tile-wrap{ grid-template-columns: 1fr } }
+
+    .tile-copy{ padding: clamp(28px, 4.5vw, 56px) }
+    .eyebrow{ font-size: var(--step--1); text-transform: uppercase; letter-spacing: .18em; color: var(--ink-weak) }
+    .tile.dark .eyebrow{ color: var(--ink-inv-weak) }
+    .tile h2{ font-size: var(--step-2); line-height:1.12; margin: 10px 0 12px }
+    .tile p{ color: var(--ink-weak); margin:0 0 14px }
+    .tile.dark p{ color: var(--ink-inv-weak) }
+    .tile-visual{ min-height: 360px; background-size: cover; background-position:center; }
+    .tile-visual.is-white{ background-color:#f4f7fa }
+
+    .pill{ display:inline-block; padding:6px 12px; border-radius:999px; border:1px solid var(--hairline); background:#fff; color:#2b2f35; font-weight:700; font-size: var(--step--1) }
+    .pill.inv{ background: transparent; color: var(--ink-inv); border-color: rgba(255,255,255,.22) }
+
+    .bullets{ margin: 10px 0 0; padding-left: 18px }
+    .bullets li{ margin: 6px 0 }
+
+    /* Footer */
+    .site-footer{ margin-top: var(--space-6); border-top:1px solid var(--hairline) }
+    .footer-inner{ padding: 22px 0; display:flex; align-items:center; justify-content:space-between; color: var(--ink-weak) }
+    section[id]{ scroll-margin-top: calc(var(--nav-h) + 12px); } /* anchors not hidden */
+
+    /* Align research tiles with the main page column */
+    .wide.tiles{ width: min(1140px, 92vw) !important; margin-inline: auto; }
+
+  </style>
+</head>
+<body>
+  <!-- ====================== NAV ====================== -->
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html#main" aria-label="Go to home">
+        <span class="brand-mark">S</span>
+        <span class="brand-text">SNU&nbsp;AGN & Galaxy</span>
+      </a>
+
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">
+      <label for="nav-toggle" class="hamburger" aria-label="Open menu"><span></span><span></span><span></span></label>
+
+      <nav id="primary-nav" class="nav" aria-label="Primary">
+        <a class="active" href="research.html">Research</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="people.html">People</a>
+        <a href="index.html#publications">Publications</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ====================== PAGE HERO ====================== -->
+    <section class="page-hero">
+      <div class="container">
+        <h1>Research</h1>
+        <p>Our group investigates the physics of active galactic nuclei and their host galaxies through time-domain analyses, spectroscopy, and robust inference. Below are our focus areas.</p>
+      </div>
+    </section>
+
+    <!-- ====================== RESEARCH TILES ====================== -->
+    <div class="wide tiles">
+
+      <!-- Galaxy Morphology -->
+      <section id="morphology" class="tile">
+        <div class="tile-wrap">
+          <div class="tile-copy">
+            <span class="eyebrow">Galaxy Morphology</span>
+            <h2>Structure of Host Galaxies</h2>
+            <p>Quantifying bulges, disks, bars, and tidal features to connect host structure with black-hole growth and AGN triggering.</p>
+            <ul class="bullets">
+              <li>2D image decomposition (e.g., bulge–disk, bar).</li>
+              <li>Non-parametric morphology and asymmetry metrics.</li>
+              <li>Merger signatures vs. AGN activity.</li>
+            </ul>
+            <div class="link-row" style="margin-top:12px">
+              <span class="pill">IFU / Imaging</span>
+              <span class="pill">Machine Vision</span>
+            </div>
+          </div>
+          <div class="tile-visual is-white" style="background-image:url('https://images.unsplash.com/photo-1454789548928-9efd52dc4031?q=80&w=1600&auto=format&fit=crop')"></div>
+        </div>
+      </section>
+
+      <!-- M–σ Relation -->
+      <section id="msigma" class="tile dark">
+        <div class="tile-wrap">
+          <div class="tile-copy">
+            <span class="eyebrow">M–σ Relation</span>
+            <h2>Black-Hole Mass vs. Stellar Dispersion</h2>
+            <p>Calibrating the relation between SMBH mass and host velocity dispersion to trace co-evolution and selection biases.</p>
+            <ul class="bullets">
+              <li>Stellar kinematics with IFU spectroscopy.</li>
+              <li>Systematics and redshift evolution tests.</li>
+              <li>Cross-calibration with RM masses.</li>
+            </ul>
+            <div class="link-row" style="margin-top:12px">
+              <span class="pill inv">Kinematics</span>
+              <span class="pill inv">Scaling Laws</span>
+            </div>
+          </div>
+          <div class="tile-visual" style="background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600&auto=format&fit=crop')"></div>
+        </div>
+      </section>
+
+      <!-- AGN Outflows -->
+      <section id="outflows" class="tile">
+        <div class="tile-wrap">
+          <div class="tile-copy">
+            <span class="eyebrow">AGN Outflows</span>
+            <h2>Feedback and ISM Coupling</h2>
+            <p>Measuring wind energetics and multi-phase gas to quantify how AGN regulate star formation and galaxy evolution.</p>
+            <ul class="bullets">
+              <li>Line diagnostics and photoionization modeling.</li>
+              <li>Spatially resolved IFU mapping of winds.</li>
+              <li>Momentum/energy-loading vs. luminosity.</li>
+            </ul>
+            <div class="link-row" style="margin-top:12px">
+              <span class="pill">IFU</span><span class="pill">UV/optical lines</span><span class="pill">Feedback</span>
+            </div>
+          </div>
+          <div class="tile-visual is-white" style="background-image:url('https://images.unsplash.com/photo-1520975867597-0f1a3b112aa1?q=80&w=1600&auto=format&fit=crop')"></div>
+        </div>
+      </section>
+
+      <!-- AGN Redshift Measurement -->
+      <section id="redshift" class="tile dark">
+        <div class="tile-wrap">
+          <div class="tile-copy">
+            <span class="eyebrow">Redshift</span>
+            <h2>Precise AGN Redshift Measurement</h2>
+            <p>Robust redshift estimation from emission/absorption features and cross-correlation to enable precision demographics.</p>
+            <ul class="bullets">
+              <li>Template fits and cross-correlation pipelines.</li>
+              <li>Systematics from broad vs. narrow lines.</li>
+              <li>Quality flags and uncertainty modeling.</li>
+            </ul>
+            <div class="link-row" style="margin-top:12px">
+              <span class="pill inv">Spectroscopy</span><span class="pill inv">Pipelines</span>
+            </div>
+          </div>
+          <div class="tile-visual" style="background-image:url('https://images.unsplash.com/photo-1465101162946-4377e57745c3?q=80&w=1600&auto=format&fit=crop')"></div>
+        </div>
+      </section>
+
+      <!-- BLR -->
+      <section id="blr" class="tile">
+        <div class="tile-wrap">
+          <div class="tile-copy">
+            <span class="eyebrow">BLR</span>
+            <h2>Broad-Line Region Geometry & Dynamics</h2>
+            <p>Reverberation mapping and velocity-resolved lags to infer BLR structure, inclination, and SMBH mass.</p>
+            <ul class="bullets">
+              <li>Continuum–line lag measurements (XCF/CCF, Bayesian).</li>
+              <li>Velocity-delay maps and dynamical modeling.</li>
+              <li>Mass scale calibration and uncertainties.</li>
+            </ul>
+            <div class="link-row" style="margin-top:12px">
+              <span class="pill">RM</span><span class="pill">Dynamical Models</span>
+            </div>
+          </div>
+          <div class="tile-visual is-white" style="background-image:url('https://images.unsplash.com/photo-1470290378698-263fa7ca60ab?q=80&w=1600&auto=format&fit=crop')"></div>
+        </div>
+      </section>
+
+      <!-- Accretion Disk -->
+      <section id="disk" class="tile dark">
+        <div class="tile-wrap">
+          <div class="tile-copy">
+            <span class="eyebrow">Accretion Disk</span>
+            <h2>Sizes, Temperatures, and Lags</h2>
+            <p>Multi-band continuum RM and SED modeling to probe temperature profiles and size–luminosity relations.</p>
+            <ul class="bullets">
+              <li>Wavelength-dependent lags and disk tomography.</li>
+              <li>Microlensing & RM synergy; dust contamination.</li>
+              <li>Population trends with mass and Eddington ratio.</li>
+            </ul>
+            <div class="link-row" style="margin-top:12px">
+              <span class="pill inv">Continuum RM</span><span class="pill inv">SEDs</span>
+            </div>
+          </div>
+          <div class="tile-visual" style="background-image:url('https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?q=80&w=1600&auto=format&fit=crop')"></div>
+        </div>
+      </section>
+
+      <!-- Changing-Look AGN -->
+      <section id="clagn" class="tile">
+        <div class="tile-wrap">
+          <div class="tile-copy">
+            <span class="eyebrow">Changing-Look AGN</span>
+            <h2>Transitions in Real Time</h2>
+            <p>Discovering and characterizing CL AGN to understand rapid accretion-state changes and line-emitting region response.</p>
+            <ul class="bullets">
+              <li>Time-domain selection from light curves and spectra.</li>
+              <li>Spectral state transitions; line appearance/disappearance.</li>
+              <li>Implications for accretion physics and unification.</li>
+            </ul>
+            <div class="link-row" style="margin-top:12px">
+              <span class="pill">Time-Domain</span><span class="pill">Spectroscopy</span>
+            </div>
+          </div>
+          <div class="tile-visual is-white" style="background-image:url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1600&auto=format&fit=crop')"></div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ====================== FOOTER ====================== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>© 2025 SNU AGN & Galaxy Research Group</span>
+      <span>Built with care • <a href="#">Back to top</a></span>
+    </div>
+  </footer>
+
+  <!-- Optional: auto-close mobile menu when a link is tapped -->
+  <script>
+    (function(){
+      var t = document.getElementById('nav-toggle'); if(!t) return;
+      document.querySelectorAll('#primary-nav a').forEach(function(a){ a.addEventListener('click', function(){ t.checked = false; }); });
+    })();
+  </script>
+</body>
+</html>

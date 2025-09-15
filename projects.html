@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="SNU AGN & Galaxy — Projects: SAMP, KAMP, SPHEREx, 7DT & LSST time-series surveys.">
+  <meta name="theme-color" content="#0a84ff">
+  <title>SNU ECHOS — Projects</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+
+    :root{
+      --bg:#ffffff; --ink:#0b0f14; --ink-weak:#697582;
+      --bg-inv:#0b0f14; --ink-inv:#f2f5f8; --ink-inv-weak:#c8d0da;
+      --blue:#0a84ff; --blue-ink:#0056b8;
+      --hairline:rgba(11,15,20,.12); --hairline-strong:rgba(11,15,20,.18);
+
+      --font: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+      --measure:68ch;
+      --step--1:14px; --step-0:17px; --step-1:clamp(20px,2.2vw,22px);
+      --step-2:clamp(26px,3.6vw,32px); --step-3:clamp(34px,5.2vw,44px);
+
+      --space-1:8px; --space-2:12px; --space-3:18px; --space-4:28px; --space-5:44px; --space-6:72px;
+      --r-lg:20px; --r-md:14px; --r-sm:10px; --elev:0 6px 24px rgba(0,0,0,.08);
+
+      /* Nav / hamburger */
+      --nav-h:64px; --ham-btn:40px; --ham-w:16px; --ham-h:2px; --ham-gap:6px; --ham-nudge-y:-1px;
+
+      /* Projects */
+      --card-max: 1120px; /* width cap for centered cards */
+    }
+
+    *{ box-sizing:border-box }
+    html,body{ height:100% }
+    html{ scroll-behavior:smooth }
+    body{
+      margin:0; background:var(--bg); color:var(--ink);
+      font-family:var(--font); font-size:var(--step-0); line-height:1.75;
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      padding-top:var(--nav-h);
+    }
+    img{ max-width:100%; display:block }
+    a{ color:var(--blue); text-decoration:none }
+    a:hover{ color:var(--blue-ink) }
+    .container{ width:min(1140px, 92vw); margin-inline:auto }
+
+    /* ------------------ Header / Nav (fixed + mobile) ------------------ */
+    .site-header{
+      position:fixed; top:0; left:0; right:0; z-index:999;
+      backdrop-filter:saturate(1.1) blur(10px);
+      background:rgba(255,255,255,.85);
+      border-bottom:1px solid var(--hairline);
+      box-shadow:0 6px 18px rgba(0,0,0,.06);
+    }
+    .nav-inner{ height:var(--nav-h); display:flex; align-items:center; justify-content:space-between; gap:16px }
+    .brand{ display:flex; align-items:center; gap:10px; color:var(--ink); font-weight:800 }
+    .brand-mark{ width:120px; height:60px; border-radius:8px; background:none; display:grid; place-items:center; color:#fff; font-size:14px; letter-spacing:.5px }
+    .brand-text{ letter-spacing:.2px }
+
+    .nav{ display:flex; align-items:center; gap:18px }
+    .nav a{ color:var(--ink); opacity:.9; padding:8px 10px; border-radius:10px }
+    .nav a:hover{ background:rgba(11,15,20,.05) }
+    .nav .active{ background:rgba(11,15,20,.06) }
+
+    .nav-toggle{ position:absolute; left:-9999px }
+    .hamburger{
+      width:var(--ham-btn); height:var(--ham-btn);
+      position:relative; line-height:0; overflow:visible; display:none;
+      border:1px solid var(--hairline); border-radius:10px;
+      background:rgba(255,255,255,.8); backdrop-filter:blur(8px); cursor:pointer;
+    }
+    .hamburger span{
+      position:absolute; left:50%; top:50%; width:var(--ham-w); height:var(--ham-h);
+      background:var(--ink); border-radius:1px;
+      transition:transform .22s ease, opacity .18s ease;
+      transform:translate(-50%, calc(-50% + var(--ham-nudge-y)));
+    }
+    .hamburger span:nth-child(1){ transform:translate(-50%, calc(-50% - var(--ham-gap) + var(--ham-nudge-y))) }
+    .hamburger span:nth-child(3){ transform:translate(-50%, calc(-50% + var(--ham-gap) + var(--ham-nudge-y))) }
+    #nav-toggle:checked + .hamburger span:nth-child(1){ transform:translate(-50%, calc(-50% + var(--ham-nudge-y))) rotate(45deg) }
+    #nav-toggle:checked + .hamburger span:nth-child(2){ opacity:0 }
+    #nav-toggle:checked + .hamburger span:nth-child(3){ transform:translate(-50%, calc(-50% + var(--ham-nudge-y))) rotate(-45deg) }
+
+    @media (max-width:860px){
+      .hamburger{ display:grid; place-content:center }
+      .nav{
+        position:fixed; top:calc(var(--nav-h) + 8px); left:12px; right:12px;
+        display:none; flex-direction:column; gap:0;
+        background:rgba(255,255,255,.98); border:1px solid var(--hairline);
+        border-radius:14px; box-shadow:var(--elev); padding:8px;
+        max-height:calc(100vh - var(--nav-h) - 24px); overflow:auto; z-index:998;
+      }
+      #nav-toggle:checked ~ .nav{ display:flex }
+      .nav a{ display:block; padding:14px 12px; margin:2px 0 }
+    }
+
+    /* ------------------ Page Hero ------------------ */
+    .page-hero{ padding:var(--space-6) 0 var(--space-4); border-bottom:1px solid var(--hairline) }
+    .page-hero h1{ font-size:var(--step-3); margin:0 0 10px }
+    .page-hero p{ color:var(--ink-weak); max-width:var(--measure); margin:0 }
+
+    /* ------------------ Project Cards (centered & balanced) ------------------ */
+    .projects{ display:grid; gap:var(--space-5); margin:var(--space-5) auto }
+
+    .project{
+      max-width: var(--card-max);
+      margin-inline: auto;                 /* center the card */
+      border:1px solid var(--hairline);
+      border-radius:var(--r-lg);
+      overflow:hidden; background:#fff; box-shadow:var(--elev)
+    }
+    .project.dark{ background:var(--bg-inv); color:var(--ink-inv); border-color:rgba(255,255,255,.08) }
+
+    .project .wrap{
+      display:grid;
+      grid-template-columns: 1fr 1fr;      /* equal columns on desktop */
+      align-items: stretch;
+    }
+    /* keep flip versions by swapping DOM order only (no CSS tricks) */
+    @media (max-width:1100px){
+      .project .wrap{ grid-template-columns:1fr }  /* stack on small screens */
+    }
+
+    .project .copy{ padding: clamp(28px, 4.5vw, 56px) }
+    .eyebrow{ font-size: var(--step--1); text-transform: uppercase; letter-spacing: .18em; color: var(--ink-weak) }
+    .dark .eyebrow{ color: var(--ink-inv-weak) }
+    .project h2{ font-size: var(--step-2); line-height:1.12; margin:10px 0 8px }
+    .project p{ color: var(--ink-weak); margin:0 0 14px }
+    .dark p{ color: var(--ink-inv-weak) }
+
+    .figure{
+      /* responsive height that scales up on desktop but stays neat on mobile */
+      min-height: clamp(280px, 36vw, 520px);
+      background-size: cover;
+      background-position: center;
+      position: relative; /* needed for ⓘ positioning */
+    }
+    .figure.is-white{ 
+      background:#f3f6fa;
+      min-height: clamp(280px, 36vw, 520px);
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* === Info badge + popover for image credits === */
+    .cap-btn{
+      position:absolute; right:.6rem; bottom:.6rem;
+      width:32px; height:32px; border:0; border-radius:999px; cursor:pointer;
+      background: rgba(0,0,0,.6); color:#fff; display:grid; place-items:center;
+      font-weight:700; line-height:1; box-shadow: 0 2px 10px rgba(0,0,0,.25);
+      z-index:1;
+    }
+    .project.dark .cap-btn{ background: rgba(255,255,255,.25); color:#fff }
+    .cap-btn:hover, .cap-btn:focus{ outline:2px solid rgba(255,255,255,.6) }
+
+    dialog.cap-pop{ max-width:min(480px, 92vw); border:1px solid var(--hairline-strong); border-radius:12px; padding:16px; }
+    dialog.cap-pop::backdrop{ background: rgba(0,0,0,.35) }
+    .cap-pop .cap-title{ font-weight:700; margin:0 0 6px; }
+    .cap-pop .cap-meta{ margin:0 0 10px; color: var(--ink-weak) }
+    .cap-pop a{ color: var(--blue); text-decoration: underline }
+    .cap-pop form{ display:flex; justify-content:flex-end }
+
+    .badges{ display:flex; flex-wrap:wrap; gap:8px; margin-top:10px }
+    .badge{ display:inline-block; padding:6px 12px; border-radius:999px; border:1px solid var(--hairline); background:#fff; font-weight:700; font-size:13px; color:#2b2f35 }
+    .dark .badge{ background:transparent; color:var(--ink-inv); border-color:rgba(255,255,255,.22) }
+
+    .meta{ display:grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap:10px; margin-top:12px }
+    .meta .card{ border:1px solid var(--hairline); border-radius:12px; padding:10px; background:#fff; color:#2b2f35; font-size:14px; font-weight:600 }
+    .dark .meta .card{ background:rgba(255,255,255,.06); color:var(--ink-inv); border-color:rgba(255,255,255,.18) }
+
+    .links{ display:flex; gap:16px; flex-wrap:wrap; margin-top:14px }
+    .link-btn{ display:inline-block; padding:10px 16px; border-radius:999px; font-weight:700; border:1px solid var(--hairline-strong); background:#fff; color:var(--ink) }
+    .dark .link-btn{ background:transparent; color:var(--ink-inv); border-color:rgba(255,255,255,.28) }
+    .link-btn.primary{ background:var(--blue); color:#fff; border-color:rgba(10,132,255,.2) }
+    .link-btn.primary:hover{ filter:brightness(1.05) }
+
+    .back-row{ margin-top: var(--space-5); border-top:1px solid var(--hairline); padding-top: 18px; display:flex; justify-content: space-between; align-items:center; color: var(--ink-weak) ; font-size: 10pt;}
+
+
+    /* ------------------ Footer (dark, centered, two rows) ------------------ */
+    .site-footer{
+      background: var(--bg-inv);
+      color: var(--ink-inv);
+      border-top: 1px solid rgba(255,255,255,.08);
+      margin-top: var(--space-6);
+    }
+    /* MATCH THE WIDE WIDTH (like your .wide sections) */
+    .site-footer .footer-inner{
+      width: min(1320px, 94vw);        /* << widened from 1140px */
+      margin-inline: auto;
+      padding: 22px 0;
+      display: grid;
+      grid-template-rows: auto auto;   /* brand row + microfooter row */
+      row-gap: 16px;
+    }
+    /* Center the brand block itself */
+    .foot-brand{
+      display: flex;
+      justify-content: center;         /* centers the logo+text as a group */
+      align-items: flex-start;
+      gap: 20px;
+      width: 100%;
+    }
+    .foot-logo{ width: 90px; height: auto; display:block; }
+    .foot-brand-text address{ margin:6px 0; font-style: normal; color: var(--ink-inv-weak); }
+    .site-footer a{ color: var(--ink-inv); text-decoration: none; opacity: .95 }
+    .site-footer a:hover{ opacity: 1 }
+
+    /* Microfooter: full width, centered items */
+    .microfooter{
+      border-top: 1px solid rgba(255,255,255,.12);
+      padding-top: 10px;
+      display: flex;
+      width: 100%;                     /* ensure it spans the footer width */
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      color: var(--ink-inv-weak);
+      text-align: center;
+    }
+    @media (max-width: 680px){
+      .foot-logo{ width: 64px; }
+    }
+  
+    /* === Add side margins (gutters) for the projects stack === */
+    .projects{
+      width: min(1140px, 92vw);        /* centers the stack with a fluid max width */
+      margin-inline: auto;             /* center horizontally */
+      padding-inline: clamp(12px, 3vw, 24px); /* left/right breathing room on smaller widths */
+    }
+
+    /* On wide desktops, remove the extra padding so cards align crisply */
+    @media (min-width: 1200px){
+      .projects{ padding-inline: 0; }
+    }
+
+  </style>
+</head>
+<body>
+  <!-- ====================== NAV ====================== -->
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html" aria-label="Go to home">
+        <span class="brand-mark"><img src="snuecho_banner_design.001.png" alt="M"></span>
+      </a>
+
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">
+      <label for="nav-toggle" class="hamburger" aria-label="Open menu"><span></span><span></span><span></span></label>
+
+      <nav id="primary-nav" class="nav" aria-label="Primary">
+        <a href="research.html">Research</a>
+        <a class="active" href="projects.html">Projects</a>
+        <a href="people.html">People</a>
+        <a href="publications.html">Publications</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ====================== HERO ====================== -->
+    <section class="page-hero">
+      <div class="container">
+        <h1>Projects</h1>
+        <p>Our programs span long-baseline monitoring, all-sky spectroscopy, and high-cadence time-domain surveys—designed to measure lags, dynamics, and spectra at scale.</p>
+      </div>
+    </section>
+
+    <!-- ====================== PROJECTS ====================== -->
+    <div class="projects">
+      <!-- SAMP -->
+      <section id="samp" class="project">
+        <div class="wrap">
+          <div class="copy">
+            <span class="eyebrow">01 • SAMP</span>
+            <h2>SNU AGN Monitoring Project</h2>
+            <p>Long-term observation to precisely measure the size of BLRs in the AGNs by capturing the variability of the black holes. This study will provide crucial constraints on size-luminosity relation and single-epoch BH mass calibration as well, especially for targets at the high-luminosity end.</p>
+            <div class="meta">
+              <div class="card">Cadence: months</div>
+              <div class="card">Spectroscopic monitoring</div>
+              <div class="card">Targets: high-luminosity</div>
+            </div>
+            <div class="badges">
+              <span class="badge">Reverberation mapping</span>
+              <span class="badge">AGN BLR</span>
+              <span class="badge">R-L relation</span>
+            </div>
+            <div class="links">
+              <a class="link-btn primary" href="publications.html">Related papers</a>
+            </div>
+          </div>
+          <div class="figure is-white" style="background-image:url('https://m.haeahn.com/upload/prjctmain/20221114134744466139.jpg')">
+            <button class="cap-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="cap-samp" aria-label="Image credit: SAMP">ⓘ</button>
+            <dialog id="cap-samp" class="cap-pop">
+              <p class="cap-title">[SAMP image — title]</p>
+              <p class="cap-meta">Credit: [Creator / Institution] — <a href="#">Source</a> — <a href="#">License</a></p>
+              <form method="dialog"><button>Close</button></form>
+            </dialog>
+          </div>
+        </div>
+      </section>
+
+      <!-- KAMP (dark; DOM order is flipped) -->
+      <section id="kamp" class="project dark">
+        <div class="wrap">
+          <div class="figure" style="background-image:url('https://kmtnet.kasi.re.kr/origin-photo/kmtnet-saao-08.jpg')">
+            <button class="cap-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="cap-kamp" aria-label="Image credit: KAMP">ⓘ</button>
+            <dialog id="cap-kamp" class="cap-pop">
+              <p class="cap-title">[KAMP image — title]</p>
+              <p class="cap-meta">Credit: [Creator / Institution] — <a href="#">Source</a> — <a href="#">License</a></p>
+              <form method="dialog"><button>Close</button></form>
+            </dialog>
+          </div>
+          <div class="copy">
+            <span class="eyebrow">02 • KAMP</span>
+            <h2>KMTNet AGN Monitoring Project</h2>
+            <p>Round-the-clock monitoring using the three KMTNet 1.6-m telescopes to capture high-cadence variability across long baselines.</p>
+            <div class="meta">
+              <div class="card">Cadence: sub-day</div>
+              <div class="card">Global sites: CTIO, SAAO, SSO</div>
+              <div class="card">Duration: multi-year</div>
+            </div>
+            <div class="badges">
+              <span class="badge">Continuum RM</span><span class="badge">Disk tomography</span><span class="badge">Time-domain</span>
+            </div>
+            <div class="links">
+              <a class="link-btn primary" href="publications.html">Related papers</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SPHEREx -->
+      <section id="spherex" class="project">
+        <div class="wrap">
+          <div class="copy">
+            <span class="eyebrow">03 • AGN X SPHEREx</span>
+            <h2>All-Sky Spectral Survey</h2>
+            <p>Low-resolution, all-sky spectra from 0.75–5 μm enabling uniform SEDs, disk/BLR/dust lag measurements, and population studies for millions of AGN.</p>
+            <div class="meta">
+              <div class="card">λ: 0.75–5 μm</div>
+              <div class="card">Coverage: all-sky</div>
+              <div class="card">Type: spectro-photometry</div>
+            </div>
+            <div class="badges">
+              <span class="badge">SEDs</span><span class="badge">Dust lags</span><span class="badge">Catalogs at scale</span>
+            </div>
+            <div class="links">
+              <a class="link-btn primary" href="publications.html">Related papers</a>
+            </div>
+          </div>
+          <div class="figure is-white" style="background-image:url('1-SPHEREx_telescope.jpg')">
+            <button class="cap-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="cap-spherex" aria-label="Image credit: SPHEREx">ⓘ</button>
+            <dialog id="cap-spherex" class="cap-pop">
+              <p class="cap-title">[SPHEREx image — title]</p>
+              <p class="cap-meta">Credit: [Creator / Institution] — <a href="#">Source</a> — <a href="#">License</a></p>
+              <form method="dialog"><button>Close</button></form>
+            </dialog>
+          </div>
+        </div>
+      </section>
+
+      <!-- Multi-band Time-Series (dark; DOM order is flipped) -->
+      <section id="multiband" class="project dark">
+        <div class="wrap">
+          <div class="figure" style="background-image:url('https://rescorp.org/wp-content/uploads/2025/01/Rubin_Observatory.jpg')">
+            <button class="cap-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="cap-multiband" aria-label="Image credit: 7DT & LSST">ⓘ</button>
+            <dialog id="cap-multiband" class="cap-pop">
+              <p class="cap-title">[7DT & LSST image — title]</p>
+              <p class="cap-meta">Credit: [Creator / Institution] — <a href="#">Source</a> — <a href="#">License</a></p>
+              <form method="dialog"><button>Close</button></form>
+            </dialog>
+          </div>
+          <div class="copy">
+            <span class="eyebrow">04 • AGN Variability Study</span>
+            <h2>7DT & LSST</h2>
+            <p>Rapid-cadence optical surveys delivering densely sampled light curves for continuum RM, changing-look searches, and variability statistics.</p>
+            <div class="meta">
+              <div class="card">7DT: days</div>
+              <div class="card">LSST: 10-yr baseline</div>
+              <div class="card">Bands: meidum & broad band</div>
+            </div>
+            <div class="badges">
+              <span class="badge">CL AGN</span><span class="badge">Lag spectra</span><span class="badge">Population trends</span>
+            </div>
+            <div class="links">
+              <a class="link-btn primary" href="publications.html">Related papers</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="back-row">
+        <a href="index.html#main" class="link">← Back to Home</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- ====================== FOOTER ====================== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+
+      <!-- Foot brand: SNU logo + group identity -->
+      <div class="foot-brand">
+        <a class="foot-logo-link" href="https://en.snu.ac.kr/" target="_blank" rel="noopener">
+          <img class="foot-logo" src="img/snu_logo.png" alt="Seoul National University logo">
+        </a>
+        <div class="foot-brand-text">
+          <strong>SNU ECHOS</strong><br>
+          AGN and Galaxy Evolution Research Group
+          <address>SNU Astronomy Program, Department of Physics and Astronomy</address>
+        </div>
+      </div>
+
+      <!-- Microfooter: compact fine print -->
+      <div class="microfooter">
+        <small>© <span id="year"></span> SNU ECHOS</small>
+        <small>Images credited in-page via ⓘ popovers</small>
+        <small>Last updated: <time id="lastmod"></time></small>
+      </div>
+
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      var t = document.getElementById('nav-toggle'); if(!t) return;
+      document.querySelectorAll('#primary-nav a').forEach(function(a){ a.addEventListener('click', function(){ t.checked = false; }); });
+    })();
+
+    // Info badge popovers
+    (function(){
+      document.querySelectorAll('.cap-btn').forEach(function(btn){
+        var id = btn.getAttribute('aria-controls');
+        var dlg = document.getElementById(id);
+        if(!dlg) return;
+        btn.addEventListener('click', function(){
+          if(!dlg.open){ dlg.showModal(); btn.setAttribute('aria-expanded','true'); }
+          else { dlg.close(); btn.setAttribute('aria-expanded','false'); }
+        });
+        dlg.addEventListener('close', function(){ btn.setAttribute('aria-expanded','false'); });
+      });
+    })();
+  </script>
+</body>
+</html>

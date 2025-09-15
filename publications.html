@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="SNU AGN & Galaxy — Publications: peer-reviewed papers and preprints from the group.">
+  <meta name="theme-color" content="#0a84ff">
+  <title>SNU ECHOS — Publications</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+
+    :root{
+      --bg: #ffffff;           /* page background */
+      --ink: #0b0f14;          /* primary text on light */
+      --ink-weak: #697582;     /* secondary text on light */
+      --bg-inv: #0b0f14;       /* inverted background (dark sections) */
+      --ink-inv: #f2f5f8;      /* text on dark */
+      --ink-inv-weak: #c8d0da; /* secondary on dark */
+      --blue: #0a84ff;         /* key accent */
+      --blue-ink: #0056b8;     /* pressed/active ink */
+      --hairline: rgba(11,15,20,.12);
+      --hairline-strong: rgba(11,15,20,.18);
+
+      --font: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+      --measure: 68ch;
+      --step--1: 14px; --step-0: 17px; --step-1: clamp(20px, 2.2vw, 22px); --step-2: clamp(26px, 3.6vw, 32px); --step-3: clamp(34px, 5.2vw, 44px);
+
+      --space-1: 8px; --space-2: 12px; --space-3: 18px; --space-4: 28px; --space-5: 44px; --space-6: 72px;
+      --r-lg: 20px; --r-md: 14px; --r-sm: 10px;
+      --elev: 0 6px 24px rgba(0,0,0,.08);
+
+      --nav-h: 64px;           /* fixed header height */
+      --ham-btn: 40px;         /* hamburger button size */
+      --ham-w: 16px;           /* bar length */
+      --ham-h: 2px;            /* bar thickness */
+      --ham-gap: 6px;          /* bar distance from center */
+      --ham-nudge-y: -1px;     /* optical center tweak */
+    }
+
+    /* ------------------ Base ------------------ */
+    *{ box-sizing: border-box }
+    html,body{ height:100% }
+    html{ scroll-behavior:smooth }
+    body{
+      margin:0; background: var(--bg); color: var(--ink);
+      font-family: var(--font); font-size: var(--step-0); line-height: 1.75;
+      -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+      padding-top: var(--nav-h); /* compensate for fixed header */
+    }
+    img{ max-width:100%; display:block }
+    a{ color: var(--blue); text-decoration: none }
+    a:hover{ color: var(--blue-ink) }
+
+    .container{ width:min(1140px, 92vw); margin-inline:auto }
+    .wide{ width:min(1320px, 94vw); margin-inline:auto }
+
+    /* ------------------ Header / Nav (fixed + mobile) ------------------ */
+    .site-header{
+      position: fixed; top:0; left:0; right:0; z-index:999;
+      backdrop-filter: saturate(1.1) blur(10px);
+      background: rgba(255,255,255,.85);
+      border-bottom: 1px solid var(--hairline);
+      box-shadow: 0 6px 18px rgba(0,0,0,.06);
+    }
+    .nav-inner{ height: var(--nav-h); display:flex; align-items:center; justify-content:space-between; gap:16px; }
+    .brand{ display:flex; align-items:center; gap:10px; color: var(--ink); font-weight:800 }
+    .brand-mark{ width:120px; height:60px; border-radius:8px; background: none; display:grid; place-items:center; color:#fff; font-size:14px; letter-spacing:.5px }
+    .brand-text{ letter-spacing:.2px }
+
+    .nav{ display:flex; align-items:center; gap:18px }
+    .nav a{ color: var(--ink); opacity:.9; padding:8px 10px; border-radius:10px }
+    .nav a:hover{ background: rgba(11,15,20,.05) }
+    .nav .active{ background: rgba(11,15,20,.06) }
+
+    .nav-toggle{ position:absolute; left:-9999px }
+    .hamburger{
+      width:var(--ham-btn); height:var(--ham-btn);
+      position:relative; display:none; border:1px solid var(--hairline); border-radius:10px;
+      background:rgba(255,255,255,.8); backdrop-filter:blur(8px); cursor:pointer;
+    }
+    .hamburger span{
+      position:absolute; left:50%; top:50%; width:var(--ham-w); height:var(--ham-h); background:var(--ink);
+      border-radius:1px; transition: transform .22s ease, opacity .18s ease;
+      transform: translate(-50%, calc(-50% + var(--ham-nudge-y)));
+    }
+    .hamburger span:nth-child(1){ transform:translate(-50%, calc(-50% - var(--ham-gap) + var(--ham-nudge-y))) }
+    .hamburger span:nth-child(3){ transform:translate(-50%, calc(-50% + var(--ham-gap) + var(--ham-nudge-y))) }
+    #nav-toggle:checked + .hamburger span:nth-child(1){ transform:translate(-50%, calc(-50% + var(--ham-nudge-y))) rotate(45deg) }
+    #nav-toggle:checked + .hamburger span:nth-child(2){ opacity:0 }
+    #nav-toggle:checked + .hamburger span:nth-child(3){ transform:translate(-50%, calc(-50% + var(--ham-nudge-y))) rotate(-45deg) }
+
+    @media (max-width:860px){
+      .hamburger{ display:grid; place-content:center }
+      .nav{
+        position:fixed; top:calc(var(--nav-h) + 8px); left:12px; right:12px;
+        display:none; flex-direction:column; gap:0;
+        background:rgba(255,255,255,.98); border:1px solid var(--hairline);
+        border-radius:14px; box-shadow:var(--elev); padding:8px;
+        max-height:calc(100vh - var(--nav-h) - 24px); overflow:auto; z-index:998;
+      }
+      #nav-toggle:checked ~ .nav{ display:flex }
+      .nav a{ display:block; padding:14px 12px; margin:2px 0 }
+    }
+
+    /* ------------------ Page Intro ------------------ */
+    .page-hero{ padding: var(--space-6) 0 var(--space-4); border-bottom:1px solid var(--hairline) }
+    .page-hero h1{ font-size: var(--step-3); margin:0 0 10px }
+    .page-hero p{ color: var(--ink-weak); margin:0; max-width: var(--measure) }
+
+    /* ------------------ Publication tiles ------------------ */
+    .pubs{ display:grid; gap: var(--space-4); margin: var(--space-5) auto; }
+    .year{
+      margin: var(--space-4) 0 var(--space-2);
+      font-weight:800; letter-spacing:.06em; color:#48515b;
+      text-transform:uppercase; font-size:13px;
+    }
+    .paper{
+      border:1px solid var(--hairline); border-radius: var(--r-lg);
+      background:#fff; box-shadow: var(--elev); padding: clamp(18px, 3.6vw, 28px);
+    }
+    .paper h3{
+      margin:0 0 6px; font-size: clamp(20px, 2.4vw, 22px); line-height:1.35; color: var(--ink);
+    }
+    .meta{
+      color: var(--ink-weak); margin: 0 0 12px; font-size: 15px;
+    }
+    .links{ display:flex; gap:12px; flex-wrap:wrap }
+    .btn{
+      display:inline-block; padding:10px 14px; border-radius:999px;
+      border:1px solid var(--hairline-strong); background:#fff; color: var(--ink); font-weight:700; font-size:14px;
+    }
+    .btn.primary{ background:var(--blue); color:#fff; border-color:rgba(10,132,255,.2) }
+    .btn.primary:hover{ filter:brightness(1.05) }
+    .tag{ display:inline-block; padding:4px 10px; border-radius:999px; border:1px solid var(--hairline); font-size:12px; font-weight:700; color:#2b2f35; background:#f8fafc; margin-right:8px }
+
+    /* Give the stack a little side breathing room on narrow laptops */
+    .pubs{ padding-inline: clamp(12px, 3vw, 24px); }
+    @media (min-width:1200px){ .pubs{ padding-inline: 0; } }
+
+    /* Keep anchors visible below the fixed header if you add year anchors later */
+    section[id]{ scroll-margin-top: calc(var(--nav-h) + 12px); }
+
+    .back-row{ margin-top: var(--space-5); border-top:1px solid var(--hairline); padding-top: 18px; display:flex; justify-content: space-between; align-items:center; color: var(--ink-weak) ; font-size: 10pt;}
+
+    /* ------------------ Footer (dark, centered, two rows) ------------------ */
+    .site-footer{
+      background: var(--bg-inv);
+      color: var(--ink-inv);
+      border-top: 1px solid rgba(255,255,255,.08);
+      margin-top: var(--space-6);
+    }
+    /* MATCH THE WIDE WIDTH (like your .wide sections) */
+    .site-footer .footer-inner{
+      width: min(1320px, 94vw);        /* << widened from 1140px */
+      margin-inline: auto;
+      padding: 22px 0;
+      display: grid;
+      grid-template-rows: auto auto;   /* brand row + microfooter row */
+      row-gap: 16px;
+    }
+    /* Center the brand block itself */
+    .foot-brand{
+      display: flex;
+      justify-content: center;         /* centers the logo+text as a group */
+      align-items: flex-start;
+      gap: 20px;
+      width: 100%;
+    }
+    .foot-logo{ width: 90px; height: auto; display:block; }
+    .foot-brand-text address{ margin:6px 0; font-style: normal; color: var(--ink-inv-weak); }
+    .site-footer a{ color: var(--ink-inv); text-decoration: none; opacity: .95 }
+    .site-footer a:hover{ opacity: 1 }
+
+    /* Microfooter: full width, centered items */
+    .microfooter{
+      border-top: 1px solid rgba(255,255,255,.12);
+      padding-top: 10px;
+      display: flex;
+      width: 100%;                     /* ensure it spans the footer width */
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      color: var(--ink-inv-weak);
+      text-align: center;
+    }
+    @media (max-width: 680px){
+      .foot-logo{ width: 64px; }
+    }
+    /* ORCID icon + author layout */
+    .meta .author{ white-space:nowrap; margin-right:6px }
+    .orcid-icon{
+      color:#A6CE39;                 /* official ORCID green */
+      margin-left:6px;
+      font-size:0.95em;
+      vertical-align:0.06em;
+    }
+    .meta .sep{ margin-right:6px }
+
+  </style>
+</head>
+<body>
+  <!-- ====================== NAV ====================== -->
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html" aria-label="Go to home">
+        <span class="brand-mark"><img src="snuecho_banner_design.001.png" alt="M"></span>
+      </a>
+
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">
+      <label for="nav-toggle" class="hamburger" aria-label="Open menu"><span></span><span></span><span></span></label>
+
+      <nav id="primary-nav" class="nav" aria-label="Primary">
+        <a href="research.html">Research</a>
+        <a href="projects.html">Projects</a>
+        <a href="people.html">People</a>
+        <a class="active" href="publications.html">Publications</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ====================== HERO ====================== -->
+    <section class="page-hero">
+      <div class="container">
+        <h1>Publications</h1>
+        <p>Peer-reviewed papers and preprints from the SNU AGN & Galaxy Research Group.</p>
+      </div>
+    </section>
+
+    <!-- ====================== PUBLICATION LIST ====================== -->
+    <div class="container pubs">
+
+      <div class="year">2025</div>
+
+      <article class="paper" aria-labelledby="p1">
+        <p class="meta">The Astrophysical Journal, Volume 985, Issue 1, id.30, 18 pp. (May 2025)</p>
+        <h3 id="p1">The Size of the Continuum Emission Region and Its Scaling Relations with Active Galactic Nucleus Luminosity and the Broad-line Region Size</h3>
+        <p class="meta">Mandal, Amit Kumar ; Woo, Jong-Hak ; Wang, Shu</p>
+        <div class="links">
+          <a class="btn primary" href="https://iopscience.iop.org/article/10.3847/1538-4357/adc56e/pdf" target="_blank" rel="noopener">View paper</a>
+          <a class="btn" href="https://arxiv.org/abs/2502.19184" target="_blank" rel="noopener">arXiv</a>
+          <a class="btn" href="https://iopscience.iop.org/article/10.3847/1538-4357/adc56e" target="_blank" rel="noopener">DOI</a>
+        </div>
+      </article>
+
+      <article class="paper" aria-labelledby="p2">
+        <p class="meta">The Astrophysical Journal, Volume 983, Issue 1, id.45, 13 pp. (April 2025)</p>
+        <h3 id="p2">Seoul National University AGN Monitoring Project. V. Velocity-resolved Hβ Reverberation Mapping and Evidence of Kinematics Evolution</h3>
+        <p class="meta">Wang, Shu ; Woo, Jong-Hak ; Barth, Aaron J. ; Bennert, Vardha N. ; Gallo, Elena ; Hodges-Kluck, Edmund ; Kim, Minjin ; Rakshit, Suvendu ; Treu, Tommaso ; Cho, Hojin ; Kabasares, Kyle M. ; Malkan, Matthew A. ; Mandal, Amit Kumar ; Son, Donghoon ; U, Vivian ; Villafana, Lizvette</p>
+        <div class="links">
+          <a class="btn primary" href="https://iopscience.iop.org/article/10.3847/1538-4357/adbca5/pdf" target="_blank" rel="noopener">View paper</a>
+          <a class="btn" href="https://arxiv.org/abs/2505.15073" target="_blank" rel="noopener">arXiv</a>
+          <a class="btn" href="https://iopscience.iop.org/article/10.3847/1538-4357/adbca5" target="_blank" rel="noopener">DOI</a>
+        </div>
+      </article>
+
+      <article class="paper" aria-labelledby="p3">
+        <p class="meta">The Astrophysical Journal, Volume 981, Issue 2, id.129, 11 pp. (March 2025)</p>
+        <h3 id="p3">Dormancy and Reawakening over Years: Eight New Recurrent Changing-look AGNs</h3>
+        <p class="meta">Wang, Shu ; Woo, Jong-Hak search ; Gallo, Elena ; Son, Donghoon ; Yang, Qian ; Jin, Junjie ; Guo, Hengxiao ; Kong, Minzhi</p>
+        <div class="links">
+          <a class="btn primary" href="https://iopscience.iop.org/article/10.3847/1538-4357/adadf3/pdf" target="_blank" rel="noopener">View paper</a>
+          <a class="btn" href="https://arxiv.org/abs/2410.15587" target="_blank" rel="noopener">arXiv</a>
+          <a class="btn" href="https://iopscience.iop.org/article/10.3847/1538-4357/adadf3" target="_blank" rel="noopener">DOI</a>
+        </div>
+      </article>
+
+      <article class="paper" aria-labelledby="p3">
+        <p class="meta">The Astrophysical Journal, Volume 980, Issue 2, id.177, 10 pp. (February 2025)</p>
+        <h3 id="p3">Prediction of Star Formation Rates Using an Artificial Neural Network</h3>
+        <p class="meta">Ayubinia, Ashraf ; Woo, Jong-Hak ; Hafezianzadeh, Fatemeh ; Kim, Taehwan ; Kim, Changseok </p>
+        <div class="links">
+          <a class="btn primary" href="https://iopscience.iop.org/article/10.3847/1538-4357/ada366/pdf" target="_blank" rel="noopener">View paper</a>
+          <a class="btn" href="https://arxiv.org/abs/2412.17446" target="_blank" rel="noopener">arXiv</a>
+          <a class="btn" href="https://iopscience.iop.org/article/10.3847/1538-4357/ada366" target="_blank" rel="noopener">DOI</a>
+        </div>
+      </article>
+
+      <div class="year">2024</div>
+
+      <article class="paper" aria-labelledby="p4">
+        <p class="meta">The Astrophysical Journal Supplement Series, Volume 275, Issue 1, id.13, 16 pp. (November 2024)</p>
+        <h3 id="p4">Revisiting the Hβ Size–Luminosity Relation Using a Uniform Reverberation-mapping Analysis</h3>
+        <p class="meta">Wang, Shu ; Woo, Jong-Hak </p>
+        <div class="links">
+          <a class="btn primary" href="https://iopscience.iop.org/article/10.3847/1538-4365/ad74f2/pdf" target="_blank" rel="noopener">View paper</a>
+          <a class="btn" href="https://arxiv.org/abs/2408.15872" target="_blank" rel="noopener">arXiv</a>
+          <a class="btn" href="https://iopscience.iop.org/article/10.3847/1538-4365/ad74f2" target="_blank" rel="noopener">DOI</a>
+        </div>
+      </article>
+
+      <article class="paper" aria-labelledby="p5">
+        <h3 id="p5">Uniform Near-IR Spectral Energy Distributions for Active Galaxies</h3>
+        <p class="meta">C. Kim, D. Son, J.-H. Woo (2024)</p>
+        <div class="links">
+          <a class="btn primary" href="#" target="_blank" rel="noopener">View paper</a>
+          <a class="btn" href="#" target="_blank" rel="noopener">arXiv</a>
+          <a class="btn" href="#" target="_blank" rel="noopener">DOI</a>
+        </div>
+      </article>
+
+      <div class="year">2023</div>
+
+      <article class="paper" aria-labelledby="p6">
+        <h3 id="p6">Robust Redshift Estimation for Broad-Line AGN with Hybrid Templates</h3>
+        <p class="meta">D. Lim, S. Shin, J.-H. Woo (2023)</p>
+        <div class="links">
+          <a class="btn primary" href="#" target="_blank" rel="noopener">View paper</a>
+          <a class="btn" href="#" target="_blank" rel="noopener">arXiv</a>
+          <a class="btn" href="#" target="_blank" rel="noopener">DOI</a>
+        </div>
+      </article>
+
+      <article class="paper" aria-labelledby="p7">
+        <h3 id="p7">Changing-Look AGN Discovered with High-Cadence Time-Series Imaging</h3>
+        <p class="meta">S. Jung, J. H. Myong, J.-H. Woo (2023)</p>
+        <div class="links">
+          <a class="btn primary" href="#" target="_blank" rel="noopener">View paper</a>
+          <a class="btn" href="#" target="_blank" rel="noopener">arXiv</a>
+          <a class="btn" href="#" target="_blank" rel="noopener">DOI</a>
+        </div>
+      </article>
+
+      <div class="back-row">
+        <a href="index.html#main" class="link">← Back to Home</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- ====================== FOOTER ====================== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+
+      <!-- Foot brand: SNU logo + group identity -->
+      <div class="foot-brand">
+        <a class="foot-logo-link" href="https://en.snu.ac.kr/" target="_blank" rel="noopener">
+          <img class="foot-logo" src="img/snu_logo.png" alt="Seoul National University logo">
+        </a>
+        <div class="foot-brand-text">
+          <strong>SNU ECHOS</strong><br>
+          AGN and Galaxy Evolution Research Group
+          <address>SNU Astronomy Program, Department of Physics and Astronomy</address>
+        </div>
+      </div>
+
+      <!-- Microfooter: compact fine print -->
+      <div class="microfooter">
+        <small>© <span id="year"></span> SNU ECHOS</small>
+        <small>Images credited in-page via ⓘ popovers</small>
+        <small>Last updated: <time id="lastmod"></time></small>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Auto-close mobile menu when a nav link is tapped -->
+  <script>
+    (function(){
+      var t = document.getElementById('nav-toggle'); if(!t) return;
+      document.querySelectorAll('#primary-nav a').forEach(function(a){
+        a.addEventListener('click', function(){ t.checked = false; });
+      });
+    })();
+  </script>
+</body>
+</html>

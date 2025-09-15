@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="SNU AGN & Galaxy — People: Professor, post‑docs, graduate students, and alumni.">
+  <meta name="theme-color" content="#0a84ff">
+  <title>SNU ECHOS — People</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome (for ORCID icon) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  
+  <style>
+
+    /* ------------------ Tokens ------------------ */
+    :root{
+      --bg: #ffffff;           /* page background */
+      --ink: #0b0f14;          /* primary text on light */
+      --ink-weak: #697582;     /* secondary text on light */
+      --bg-inv: #0b0f14;       /* inverted background (dark sections) */
+      --ink-inv: #f2f5f8;      /* text on dark */
+      --ink-inv-weak: #c8d0da; /* secondary on dark */
+      --blue: #0a84ff;         /* key accent */
+      --blue-ink: #0056b8;     /* pressed/active ink */
+      --hairline: rgba(11,15,20,.12);
+      --hairline-strong: rgba(11,15,20,.18);
+
+      --font: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+      --measure: 68ch;
+      --step--1: 14px; --step-0: 17px; --step-1: clamp(20px, 2.2vw, 22px); --step-2: clamp(26px, 3.6vw, 32px); --step-3: clamp(34px, 5.2vw, 44px);
+
+      --space-1: 8px; --space-2: 12px; --space-3: 18px; --space-4: 28px; --space-5: 44px; --space-6: 72px;
+      --r-lg: 20px; --r-md: 14px; --r-sm: 10px;
+      --elev: 0 6px 24px rgba(0,0,0,.08);
+
+      --nav-h: 64px;           /* fixed header height */
+      --ham-btn: 40px;         /* hamburger button size */
+      --ham-w: 16px;           /* bar length */
+      --ham-h: 2px;            /* bar thickness */
+      --ham-gap: 6px;          /* bar distance from center */
+      --ham-nudge-y: -1px;     /* optical center tweak */
+    }
+
+    /* ------------------ Base ------------------ */
+    *{ box-sizing: border-box }
+    html,body{ height:100% }
+    html{ scroll-behavior:smooth }
+    body{
+      margin:0; background: var(--bg); color: var(--ink);
+      font-family: var(--font); font-size: var(--step-0); line-height: 1.75;
+      -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+      padding-top: var(--nav-h); /* compensate for fixed header */
+    }
+    img{ max-width:100%; display:block }
+    a{ color: var(--blue); text-decoration: none }
+    a:hover{ color: var(--blue-ink) }
+
+    .container{ width:min(1140px, 92vw); margin-inline:auto }
+    .wide{ width:min(1320px, 94vw); margin-inline:auto }
+
+    /* ------------------ Header / Nav (fixed + mobile) ------------------ */
+    .site-header{
+      position: fixed; top:0; left:0; right:0; z-index:999;
+      backdrop-filter: saturate(1.1) blur(10px);
+      background: rgba(255,255,255,.85);
+      border-bottom: 1px solid var(--hairline);
+      box-shadow: 0 6px 18px rgba(0,0,0,.06);
+    }
+    .nav-inner{ height: var(--nav-h); display:flex; align-items:center; justify-content:space-between; gap:16px; }
+    .brand{ display:flex; align-items:center; gap:10px; color: var(--ink); font-weight:800 }
+    .brand-mark{ width:120px; height:60px; border-radius:8px; background: none; display:grid; place-items:center; color:#fff; font-size:14px; letter-spacing:.5px }
+    .brand-text{ letter-spacing:.2px }
+
+    .nav{ display:flex; align-items:center; gap:18px }
+    .nav a{ color: var(--ink); opacity:.9; padding:8px 10px; border-radius:10px }
+    .nav a:hover{ background: rgba(11,15,20,.05) }
+    .nav .active{ background: rgba(11,15,20,.06) }
+
+    /* Hamburger (CSS-only toggle) */
+    .nav-toggle{ position:absolute; left:-9999px }
+    .hamburger{ width: var(--ham-btn); height: var(--ham-btn); position: relative; line-height:0; overflow: visible; display:none; border:1px solid var(--hairline); border-radius:10px; background: rgba(255,255,255,.8); backdrop-filter: blur(8px); cursor:pointer; }
+    .hamburger span{ position:absolute; left:50%; top:50%; width: var(--ham-w); height: var(--ham-h); background: var(--ink); border-radius:1px; transition: transform .22s ease, opacity .18s ease; transform: translate(-50%, calc(-50% + var(--ham-nudge-y))); }
+    .hamburger span:nth-child(1){ transform: translate(-50%, calc(-50% - var(--ham-gap) + var(--ham-nudge-y))); }
+    .hamburger span:nth-child(3){ transform: translate(-50%, calc(-50% + var(--ham-gap) + var(--ham-nudge-y))); }
+    #nav-toggle:checked + .hamburger span:nth-child(1){ transform: translate(-50%, calc(-50% + var(--ham-nudge-y))) rotate(45deg); }
+    #nav-toggle:checked + .hamburger span:nth-child(2){ opacity:0 }
+    #nav-toggle:checked + .hamburger span:nth-child(3){ transform: translate(-50%, calc(-50% + var(--ham-nudge-y))) rotate(-45deg); }
+
+    @media (max-width: 810px){
+      .hamburger{ display:grid; place-content:center; }
+      .nav{ position: fixed; top: calc(var(--nav-h) + 8px); left:12px; right:12px; display:none; flex-direction:column; gap:0; background: rgba(255,255,255,.98); border:1px solid var(--hairline); border-radius:14px; box-shadow: var(--elev); padding:8px; max-height: calc(100vh - var(--nav-h) - 24px); overflow:auto; z-index:998; }
+      #nav-toggle:checked ~ .nav{ display:flex }
+      .nav a{ display:block; padding:14px 12px; margin:2px 0 }
+    }
+
+    /* ------------------ Page Intro ------------------ */
+    .page-hero{ padding: var(--space-6) 0 var(--space-4); border-bottom:1px solid var(--hairline) }
+    .page-hero h1{ font-size: var(--step-3); margin:0 0 10px }
+    .page-hero p{ color: var(--ink-weak); margin:0; max-width: var(--measure) }
+
+    /* ------------------ People Grid ------------------ */
+    .group{ padding: var(--space-5) 0 0 }
+    .group h2{ font-size: var(--step-2); margin: 0 0 16px }
+
+
+    .people-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px }
+    @media (max-width: 1100px){ .people-grid{ grid-template-columns: repeat(2, 1fr) } }
+    @media (max-width: 810px){ .people-grid{ grid-template-columns: 1fr } }
+
+    .person-card{ border:1px solid var(--hairline); background:#fff; border-radius: var(--r-lg); overflow:hidden; box-shadow: var(--elev); display:grid; grid-template-columns: 140px 1fr; gap: 0 ; min-height: 250px; }
+    @media (max-width: 810px){ .person-card{ grid-template-columns: 1fr } }
+
+    .avatar{ background:#f4f7fa; display:flex; align-items:center; justify-content:center }
+    .avatar img{ width:100%; height:100%; object-fit:cover; aspect-ratio: 1/1 }
+
+    .person-body{ padding: 18px }
+    .person-body h3{ margin:0 0 2px; font-size: 20px }
+    .role{ display:inline-block; padding:6px 10px; border-radius:999px; border:1px solid var(--hairline); font-size: var(--step--1); color:#2b2f35; background:#f8fafc; font-weight:700 }
+    .meta{ margin-top: 8px; color: var(--ink-weak) }
+
+    .tag-row{ margin-top:10px; display:flex; flex-wrap:wrap; gap:8px }
+    .tag{ display:inline-block; padding:5px 10px; border-radius:999px; border:1px solid var(--hairline); font-size: 13px; color:#2b2f35; background:#fff }
+
+    .back-row{ margin-top: var(--space-5); border-top:1px solid var(--hairline); padding-top: 18px; display:flex; justify-content: space-between; align-items:center; color: var(--ink-weak) ; font-size: 10pt;}
+
+    .link-row{ display:flex; gap: 16px; flex-wrap:wrap }
+    .link{ font-size: small; }
+    
+    /* ------------------ Footer (dark, centered, two rows) ------------------ */
+    .site-footer{
+      background: var(--bg-inv);
+      color: var(--ink-inv);
+      border-top: 1px solid rgba(255,255,255,.08);
+      margin-top: var(--space-6);
+    }
+    /* MATCH THE WIDE WIDTH (like your .wide sections) */
+    .site-footer .footer-inner{
+      width: min(1320px, 94vw);        /* << widened from 1140px */
+      margin-inline: auto;
+      padding: 22px 0;
+      display: grid;
+      grid-template-rows: auto auto;   /* brand row + microfooter row */
+      row-gap: 16px;
+    }
+    /* Center the brand block itself */
+    .foot-brand{
+      display: flex;
+      justify-content: center;         /* centers the logo+text as a group */
+      align-items: flex-start;
+      gap: 20px;
+      width: 100%;
+    }
+    .foot-logo{ width: 90px; height: auto; display:block; }
+    .foot-brand-text address{ margin:6px 0; font-style: normal; color: var(--ink-inv-weak); }
+    .site-footer a{ color: var(--ink-inv); text-decoration: none; opacity: .95 }
+    .site-footer a:hover{ opacity: 1 }
+
+    /* Microfooter: full width, centered items */
+    .microfooter{
+      border-top: 1px solid rgba(255,255,255,.12);
+      padding-top: 10px;
+      display: flex;
+      width: 100%;                     /* ensure it spans the footer width */
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      color: var(--ink-inv-weak);
+      text-align: center;
+    }
+    @media (max-width: 680px){
+      .foot-logo{ width: 64px; }
+    }
+
+    /* ORCID icon + author layout */
+    .meta .author{ white-space:nowrap; margin-right:6px }
+    .orcid-icon{
+      color:#A6CE39;                 /* official ORCID green */
+      margin-left:6px;
+      font-size:0.95em;
+      vertical-align:0.06em;
+    }
+    .meta .sep{ margin-right:6px }
+  
+  </style>
+</head>
+<body>
+  <!-- ====================== NAV ====================== -->
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html" aria-label="Go to home">
+        <span class="brand-mark"><img src="snuecho_banner_design.001.png" alt="M"></span>
+      </a>
+
+      <!-- Mobile menu toggle + button (order matters: input → label → nav) -->
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">
+      <label for="nav-toggle" class="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </label>
+
+      <nav id="primary-nav" class="nav" aria-label="Primary">
+        <a href="research.html">Research</a>
+        <a href="projects.html">Projects</a>
+        <a class="active" href="people.html">People</a>
+        <a href="publications.html">Publications</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ====================== PAGE HERO ====================== -->
+    <section class="page-hero">
+      <div class="container">
+        <h1>People</h1>
+        <p>Professor, post‑docs, graduate students, and alumni of the SNU ECHOS Research Group.</p>
+      </div>
+    </section>
+
+    <!-- ====================== GROUPS ====================== -->
+    <div class="container">
+      <!-- Professor -->
+      <section class="group" aria-labelledby="g-prof">
+        <h2 id="g-prof">Professor</h2>
+        <div class="people-grid">
+          <!-- Jong-Hak Woo -->
+          <article class="person-card">
+            <div class="avatar">
+              <img src="https://wallpapers.com/images/thumbnail/anonymous-businessman-silhouette-020wim06dz7nqb9i.webp" alt="Photo of Professor Jong‑Hak Woo (placeholder)">
+            </div>
+            <div class="person-body">
+              <h3>Jong‑Hak Woo<a href="https://orcid.org/0000-0002-8055-5465" target="_blank" rel="noopener" aria-label="ORCID"><i class="fa-brands fa-orcid orcid-icon"></i></a></h3>
+              <div class="link-row">
+                <a class="link" href="mailto:jhwoo@astro.snu.ac.kr">jhwoo@astro.snu.ac.kr</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Post‑docs -->
+      <section class="group" aria-labelledby="g-postdoc">
+        <h2 id="g-postdoc">Post‑docs</h2>
+        <div class="people-grid">
+          <!-- Donghoon Son -->
+          <article class="person-card">
+            <div class="avatar">
+              <img src="https://wallpapers.com/images/thumbnail/anonymous-businessman-silhouette-020wim06dz7nqb9i.webp" alt="Photo of Donghoon Son (placeholder)">
+            </div>
+            <div class="person-body">
+              <h3>Donghoon Son<a href="https://orcid.org/0000-0002-4704-3230" target="_blank" rel="noopener" aria-label="ORCID"><i class="fa-brands fa-orcid orcid-icon"></i></a></h3>
+              <div class="link-row">
+                <a class="link" href="mailto:dhson2@astro.snu.ac.kr">dhson2@astro.snu.ac.kr</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Ashraf Ayubinia -->
+          <article class="person-card">
+            <div class="avatar">
+              <img src="https://wallpapers.com/images/thumbnail/anonymous-businessman-silhouette-020wim06dz7nqb9i.webp" alt="Photo of Ashraf Ayubinia (placeholder)">
+            </div>
+            <div class="person-body">
+              <h3>Ashraf Ayubinia<a href="https://orcid.org/0009-0002-9526-5820" target="_blank" rel="noopener" aria-label="ORCID"><i class="fa-brands fa-orcid orcid-icon"></i></a></h3>
+            <div class="link-row">
+              <a class="link" href="mailto:a.ayubinia@gmail.com">a.ayubinia@gmail.com</a>
+            </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Graduate Students -->
+      <section class="group" aria-labelledby="g-grad">
+        <h2 id="g-grad">Graduate Students</h2>
+        <div class="people-grid">
+          <!-- Changseok Kim -->
+          <article class="person-card">
+            <div class="avatar">
+              <img src="https://wallpapers.com/images/thumbnail/anonymous-businessman-silhouette-020wim06dz7nqb9i.webp" alt="Photo of Changseok Kim (placeholder)">
+            </div>
+            <div class="person-body">
+              <h3>Changseok Kim<a href="https://orcid.org/0000-0002-2156-4994" target="_blank" rel="noopener" aria-label="ORCID"><i class="fa-brands fa-orcid orcid-icon"></i></a></h3>
+              <div class="link-row">
+                <a class="link" href="mailto:kcs1996kcs@snu.ac.kr">kcs1996kcs@snu.ac.kr</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Sungho Jung -->
+          <article class="person-card">
+            <div class="avatar">
+              <img src="https://wallpapers.com/images/thumbnail/anonymous-businessman-silhouette-020wim06dz7nqb9i.webp" alt="Photo of Sungho Jung (placeholder)">
+            </div>
+            <div class="person-body">
+              <h3>Sungho Jung<a href="https://orcid.org/0009-0009-5870-4266" target="_blank" rel="noopener" aria-label="ORCID"><i class="fa-brands fa-orcid orcid-icon"></i></a> <a href="https://github.com/ericjsh" target="_blank" rel="noopener" aria-label="ORCID"><i class="fab fa-github"></i></i></a></h3>
+              <div class="link-row">
+                <a class="link" href="mailto:eric2912@snu.ac.kr">eric2912@snu.ac.kr</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Jimin Kim -->
+          <article class="person-card">
+            <div class="avatar">
+              <img src="https://wallpapers.com/images/thumbnail/anonymous-businessman-silhouette-020wim06dz7nqb9i.webp" alt="Photo of Jimin Kim (placeholder)">
+            </div>
+            <div class="person-body">
+              <h3>Jimin Kim<a href="https://orcid.org/0009-0005-9895-4092" target="_blank" rel="noopener" aria-label="ORCID"><i class="fa-brands fa-orcid orcid-icon"></i></a></h3>
+              <div class="link-row">
+                <a class="link" href="mailto:paul5282@snu.ac.kr">paul5282@snu.ac.kr</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Jun Hee Myong -->
+          <article class="person-card">
+            <div class="avatar">
+              <img src="https://wallpapers.com/images/thumbnail/anonymous-businessman-silhouette-020wim06dz7nqb9i.webp" alt="Photo of Jun Hee Myong (placeholder)">
+            </div>
+            <div class="person-body">
+              <h3>Jun Hee Myong<a href="https://orcid.org/0009-0009-5870-4266" target="_blank" rel="noopener" aria-label="ORCID"><i class="fa-brands fa-orcid orcid-icon"></i></a></h3>
+              <div class="link-row">
+                <a class="link" href="mailto:r136a1234@gmail.com">r136a1234@gmail.com</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Alumni -->
+      <section class="group" aria-labelledby="g-alumni">
+        <h2 id="g-alumni">Alumni</h2>
+        <div class="people-grid">
+          <!-- Shu Wang -->
+          <article class="person-card">
+            <div class="avatar">
+              <img src="https://wallpapers.com/images/thumbnail/anonymous-businessman-silhouette-020wim06dz7nqb9i.webp" alt="Photo of Shu Wang (placeholder)">
+            </div>
+            <div class="person-body">
+              <h3>Shu Wang<a href="https://orcid.org/0000-0002-2052-6400" target="_blank" rel="noopener" aria-label="ORCID"><i class="fa-brands fa-orcid orcid-icon"></i></a></h3>
+              <div class="link-row">
+                <a class="link" href="mailto:r136a1234@gmail.com">wangshu100002@gmail.com</a>
+              </div>
+              <p class="meta">Participated until 2025.<em><!-- Replace: e.g. data reduction, photometry. --></em></p>
+            </div>
+          </article>
+
+          <!-- Hojin Cho -->
+          <article class="person-card">
+            <div class="avatar">
+              <img src="https://wallpapers.com/images/thumbnail/anonymous-businessman-silhouette-020wim06dz7nqb9i.webp" alt="Photo of Hojing Cho (placeholder)">
+            </div>
+            <div class="person-body">
+              <h3>Hojin Cho<a href="https://orcid.org/0000-0003-2010-8521" target="_blank" rel="noopener" aria-label="ORCID"><i class="fa-brands fa-orcid orcid-icon"></i></a></h3>
+              <div class="link-row">
+                <a class="link" href="mailto:r136a1234@gmail.com">hcho.astro@gmail.com</a>
+              </div>
+              <p class="meta">Participated until 2025.<em><!-- Replace: e.g. ML for AGN variability. --></em></p>
+            </div>
+          </article>
+
+          <!-- Amit Kumar -->
+          <article class="person-card">
+            <div class="avatar">
+              <img src="https://wallpapers.com/images/thumbnail/anonymous-businessman-silhouette-020wim06dz7nqb9i.webp" alt="Photo of Amit Kumar (placeholder)">
+            </div>
+            <div class="person-body">
+              <h3>Amit Kumar<a href="https://orcid.org/0000-0001-9957-6349" target="_blank" rel="noopener" aria-label="ORCID"><i class="fa-brands fa-orcid orcid-icon"></i></a></h3>
+              <div class="link-row">
+                <a class="link" href="mailto:r136a1234@gmail.com">amitastro.am@gmail.com</a>
+              </div>
+              <p class="meta">Participated until 2025.<em><!-- Replace: e.g. ML for AGN variability. --></em></p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <div class="back-row">
+        <a href="index.html" class="link">← Back to Home</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- ====================== FOOTER ====================== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+
+      <!-- Foot brand: SNU logo + group identity -->
+      <div class="foot-brand">
+        <a class="foot-logo-link" href="https://en.snu.ac.kr/" target="_blank" rel="noopener">
+          <img class="foot-logo" src="img/snu_logo.png" alt="Seoul National University logo">
+        </a>
+        <div class="foot-brand-text">
+          <strong>SNU ECHOS</strong><br>
+          AGN and Galaxy Evolution Research Group
+          <address>SNU Astronomy Program, Department of Physics and Astronomy</address>
+        </div>
+      </div>
+
+      <!-- Microfooter: compact fine print -->
+      <div class="microfooter">
+        <small>© <span id="year"></span> SNU ECHOS</small>
+        <small>Images credited in-page via ⓘ popovers</small>
+        <small>Last updated: <time id="lastmod"></time></small>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- auto-close mobile menu when a link is tapped -->
+  <script>
+    (function(){
+      var t = document.getElementById('nav-toggle'); if(!t) return;
+      document.querySelectorAll('#primary-nav a').forEach(function(a){ a.addEventListener('click', function(){ t.checked = false; }); });
+    })();
+  </script>
+</body>
+</html>

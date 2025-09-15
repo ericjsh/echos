@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="MOSAIC Research Group — Active galactic nuclei, galaxy co-evolution, time-domain surveys, and open pipelines.">
+  <meta name="theme-color" content="#0a84ff">
+  <meta property="og:title" content="SNU ECHOS — Home">
+  <meta property="og:description" content="Research on AGNs, galaxies, reverberation mapping, outflows, and cosmology at Seoul National University.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1450849608880-6f787542c88a?q=80&w=1200&auto=format&fit=crop">
+  <title>SNU ECHOS — Home</title>
+  <link rel="icon" type="image/favicon" href="favicon.ico">
+  <style>
+    /* ------------------ Tokens ------------------ */
+    :root{
+      --bg:#ffffff; --ink:#0b0f14; --ink-weak:#697582;
+      --bg-inv:#0b0f14; --ink-inv:#f2f5f8; --ink-inv-weak:#c8d0da;
+      --blue:#0a84ff; --blue-ink:#0056b8;
+      --hairline:rgba(11,15,20,.12); --hairline-strong:rgba(11,15,20,.18);
+
+      --font: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+      --measure:68ch;
+      --step--1:14px; --step-0:17px; --step-1:clamp(20px,2.2vw,22px);
+      --step-2:clamp(26px,3.6vw,32px); --step-3:clamp(34px,5.2vw,44px); --step-4: clamp(44px, 7.2vw, 64px);
+
+      --space-1:8px; --space-2:12px; --space-3:18px; --space-4:28px; --space-5:44px; --space-6:72px; --space-7:110px;
+      --r-lg:20px; --r-md:14px; --r-sm:10px; --elev:0 6px 24px rgba(0,0,0,.08);
+
+      /* Nav / hamburger */
+      --nav-h:64px; --ham-btn:40px; --ham-w:16px; --ham-h:2px; --ham-gap:6px; --ham-nudge-y:-1px;
+    }
+
+    /* ------------------ Base ------------------ */
+    *{ box-sizing:border-box }
+    html,body{ height:100% }
+    html{ scroll-behavior:smooth }
+    body{
+      margin:0; background:var(--bg); color:var(--ink);
+      font-family:var(--font); font-size:var(--step-0); line-height:1.75;
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      padding-top: var(--nav-h);
+    }
+    img{ max-width:100%; display:block }
+    a{ color:var(--blue); text-decoration:none }
+    a:hover{ color:var(--blue-ink) }
+
+    .container{ width:min(1140px, 92vw); margin-inline:auto }
+    .wide{ width:min(1400px, 94vw); margin-inline:auto }
+    .center{ text-align:center }
+
+    /* ------------------ Header / Nav (fixed + mobile) ------------------ */
+    .site-header{
+      position: fixed; top:0; left:0; right:0; z-index:999;
+      backdrop-filter:saturate(1.1) blur(10px);
+      background:rgba(255,255,255,.85);
+      border-bottom:1px solid var(--hairline);
+      box-shadow:0 6px 18px rgba(0,0,0,.06);
+    }
+    .nav-inner{ height:var(--nav-h); display:flex; align-items:center; justify-content:space-between; gap:16px }
+    .brand{ display:flex; align-items:center; gap:10px; color:var(--ink); font-weight:800 }
+    .brand-mark{ width:120px; height:60px; border-radius:8px; background:none; display:grid; place-items:center }
+
+    .nav{ display:flex; align-items:center; gap:18px }
+    .nav a{ color:var(--ink); opacity:.9; padding:8px 10px; border-radius:10px }
+    .nav a:hover{ background:rgba(11,15,20,.05) }
+
+    .nav-toggle{ position:absolute; left:-9999px }
+    .hamburger{
+      width: var(--ham-btn); height: var(--ham-btn);
+      position: relative; line-height:0; overflow: visible; display:none;
+      border:1px solid var(--hairline); border-radius:10px;
+      background:rgba(255,255,255,.8); backdrop-filter: blur(8px); cursor:pointer;
+    }
+    .hamburger span{
+      position:absolute; left:50%; top:50%; width: var(--ham-w); height: var(--ham-h);
+      background: var(--ink); border-radius:1px; transition: transform .22s ease, opacity .18s ease;
+      transform: translate(-50%, calc(-50% + var(--ham-nudge-y)));
+    }
+    .hamburger span:nth-child(1){ transform: translate(-50%, calc(-50% - var(--ham-gap) + var(--ham-nudge-y))); }
+    .hamburger span:nth-child(3){ transform: translate(-50%, calc(-50% + var(--ham-gap) + var(--ham-nudge-y))); }
+    #nav-toggle:checked + .hamburger span:nth-child(1){ transform: translate(-50%, calc(-50% + var(--ham-nudge-y))) rotate(45deg); }
+    #nav-toggle:checked + .hamburger span:nth-child(2){ opacity:0 }
+    #nav-toggle:checked + .hamburger span:nth-child(3){ transform: translate(-50%, calc(-50% + var(--ham-nudge-y))) rotate(-45deg); }
+
+    @media (max-width:980px){
+      .hamburger{ display:grid; place-content:center }
+      .nav{
+        position:fixed; top:calc(var(--nav-h) + 8px); left:12px; right:12px;
+        display:none; flex-direction:column; gap:0;
+        background:rgba(255,255,255,.98); border:1px solid var(--hairline);
+        border-radius:14px; box-shadow:var(--elev); padding:8px;
+        max-height:calc(100vh - var(--nav-h) - 24px); overflow:auto; z-index:998;
+      }
+      #nav-toggle:checked ~ .nav{ display:flex }
+      .nav a{ display:block; padding:14px 12px; margin:2px 0 }
+    }
+
+    /* keep anchors from hiding under fixed bar */
+    section[id]{ scroll-margin-top: calc(var(--nav-h) + 12px); }
+
+    /* ------------------ Hero ------------------ */
+    .hero{ padding: var(--space-7) 0 var(--space-6); border-bottom:1px solid var(--hairline) }
+    .hero h1{ font-size: var(--step-4); line-height:1.06; margin:0 0 var(--space-3) }
+    .hero p.lead{ font-size: var(--step-1); color: var(--ink-weak); max-width: var(--measure); margin:0 auto var(--space-4) }
+    .cta-row{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap }
+
+    .btn{ display:inline-block; padding:12px 20px; border-radius:999px; font-weight:700; border:1px solid var(--hairline-strong) }
+    .btn-primary{ background:var(--blue); color:#fff; border-color: rgba(10,132,255,.2) }
+    .btn-primary:hover{ filter:brightness(1.05) }
+    .btn-ghost{ background:#fff; color:var(--ink) }
+
+    /* ------------------ Tiles ------------------ */
+    .tiles{ display:grid; grid-template-columns:1fr; gap: var(--space-6); margin-top: var(--space-6) }
+
+    .tile{ border:1px solid var(--hairline); border-radius:var(--r-lg); overflow:hidden; background:#fff }
+    .tile.dark{ background:var(--bg-inv); color:var(--ink-inv); border-color:rgba(255,255,255,.08) }
+    .tile-wrap{ display:grid; grid-template-columns: 1.15fr .85fr; gap:0 }
+    @media (max-width:980px){ .tile-wrap{ grid-template-columns:1fr } }
+
+    .tile-copy{ padding: clamp(28px, 4.5vw, 56px) }
+    .eyebrow{ font-size: var(--step--1); text-transform: uppercase; letter-spacing:.18em; color: var(--ink-weak) }
+    .tile.dark .eyebrow{ color: var(--ink-inv-weak) }
+    .tile h2{ font-size: var(--step-3); line-height:1.12; margin:10px 0 12px }
+    .tile p{ color:var(--ink-weak); margin:0 0 18px }
+    .tile.dark p{ color:var(--ink-inv-weak) }
+    .link-row{ display:flex; gap:16px; flex-wrap:wrap }
+    .link{ font-weight:700 }
+
+    /* Visuals + popover captions */
+    .tile-visual{ margin:0; min-height:450px; background-size:cover; background-position:center; position:relative }
+    .tile-visual.is-white{ background-color:#f4f7fa }
+
+    .cap-btn{
+      position:absolute; right:.6rem; bottom:.6rem;
+      width:32px; height:32px; border:0; border-radius:999px; cursor:pointer;
+      background: rgba(0,0,0,.6); color:#fff; display:grid; place-items:center;
+      font-weight:700; line-height:1; box-shadow: 0 2px 10px rgba(0,0,0,.25);
+    }
+    .tile.dark .cap-btn{ background: rgba(255,255,255,.25); color:#fff }
+    .cap-btn:hover, .cap-btn:focus{ outline:2px solid rgba(255,255,255,.6) }
+
+    dialog.cap-pop{ max-width:min(480px, 92vw); border:1px solid var(--hairline-strong); border-radius:12px; padding:16px; }
+    dialog.cap-pop::backdrop{ background: rgba(0,0,0,.35) }
+    .cap-pop .cap-title{ font-weight:700; margin:0 0 6px; }
+    .cap-pop .cap-meta{ margin:0 0 10px; color: var(--ink-weak) }
+    .cap-pop a{ color: var(--blue); text-decoration: underline }
+    .cap-pop form{ display:flex; justify-content:flex-end }
+
+    /* Two-up tiles */
+    .two-up{ display:grid; grid-template-columns: 1fr 1fr; gap: var(--space-6) }
+    @media (max-width:980px){ .two-up{ grid-template-columns:1fr } }
+
+    /* Pills */
+    .pill{ display:inline-block; padding:6px 12px; border-radius:999px; border:1px solid var(--hairline); color: var(--ink); background:#fff; font-weight:700; font-size: var(--step--1) }
+    .pill.inv{ background: transparent; color: var(--ink-inv); border-color: rgba(255,255,255,.22) }
+
+    /* Lists, pubs */
+    .list{ margin:0; padding-left:18px } .list li{ margin:8px 0 }
+    .pubs{ display:grid; grid-template-columns:1fr; gap:12px; margin-top:14px }
+    .pub{ padding:5px 0; border-top:1px solid var(--hairline) } .pub:first-child{ border-top:0 }
+    .pub strong{ color:var(--ink) } .tile.dark .pub strong{ color:var(--ink-inv) }
+
+    /* ------------------ Footer (dark, centered, two rows) ------------------ */
+    .site-footer{
+      background: var(--bg-inv);
+      color: var(--ink-inv);
+      border-top: 1px solid rgba(255,255,255,.08);
+      margin-top: var(--space-6);
+    }
+    /* MATCH THE WIDE WIDTH (like your .wide sections) */
+    .site-footer .footer-inner{
+      width: min(1320px, 94vw);        /* << widened from 1140px */
+      margin-inline: auto;
+      padding: 22px 0;
+      display: grid;
+      grid-template-rows: auto auto;   /* brand row + microfooter row */
+      row-gap: 16px;
+    }
+    /* Center the brand block itself */
+    .foot-brand{
+      display: flex;
+      justify-content: center;         /* centers the logo+text as a group */
+      align-items: flex-start;
+      gap: 20px;
+      width: 100%;
+    }
+    .foot-logo{ width: 90px; height: auto; display:block; }
+    .foot-brand-text address{ margin:6px 0; font-style: normal; color: var(--ink-inv-weak); }
+    .site-footer a{ color: var(--ink-inv); text-decoration: none; opacity: .95 }
+    .site-footer a:hover{ opacity: 1 }
+
+    /* Microfooter: full width, centered items */
+    .microfooter{
+      border-top: 1px solid rgba(255,255,255,.12);
+      padding-top: 10px;
+      display: flex;
+      width: 100%;                     /* ensure it spans the footer width */
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      color: var(--ink-inv-weak);
+      text-align: center;
+    }
+    @media (max-width: 680px){
+      .foot-logo{ width: 64px; }
+    }
+
+    /* Accessibility */
+    .skip-link{ position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden }
+    .skip-link:focus{ left:12px; top:12px; width:auto; height:auto; padding:10px 14px; background:#000; color:#fff; border-radius:8px; z-index:100 }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ====================== NAV ====================== -->
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html" aria-label="Go to home">
+        <span class="brand-mark"><img src="snuecho_banner_design.001.png" alt="M"></span>
+      </a>
+
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">
+      <label for="nav-toggle" class="hamburger" aria-label="Open menu"><span></span><span></span><span></span></label>
+
+      <nav id="primary-nav" class="nav" aria-label="Primary">
+        <a href="research.html">Research</a>
+        <a href="projects.html">Projects</a>
+        <a href="people.html">People</a>
+        <a href="publications.html">Publications</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ====================== HERO ====================== -->
+    <section class="hero center container">
+      <h1>Jong-Hak Woo's Research Group</h1>
+      <p class="lead">Seoul National University AGN and Galaxy Research Group.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="research.html">Explore Research</a>
+        <a class="btn btn-ghost" href="publications.html">View Publications</a>
+      </div>
+    </section>
+
+    <div class="wide tiles">
+
+      <!-- ========== TILE: About us (dark) ========== -->
+      <section id="about" class="tile dark">
+        <div class="tile-wrap">
+          <div class="tile-copy">
+            <span class="eyebrow">About Us</span>
+            <h2>Welcome.</h2>
+            <p>We investigate Active Galactic Nuceli (AGNs) and galaxy evolution through various observational techniques, paired with testing of theoretical models. We aim to reveal the physics that powers AGNs, map their structure with precision, and determine how their energetic output shapes their host galaxies and surrounding environments.</p>
+          </div>
+          <figure class="tile-visual" aria-label="About hero" style="background-image:url('img/agn_about_us_main.jpg')">
+            <button class="cap-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="cap-about" aria-label="Image credit: About">ⓘ</button>
+            <dialog id="cap-about" class="cap-pop">
+              <p class="cap-title">Milky Way over Tony Grove Lake</p>
+              <p class="cap-meta">
+                Photo by <a href="https://unsplash.com/ko/@anniespratt">Annie Spratt</a>
+                on <a href="https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">Unsplash</a> —
+                <a href="https://unsplash.com/license">Unsplash License</a>
+                <em>Changes:</em> Edit by Sungho Jung
+              </p>              
+              <form method="dialog"><button>Close</button></form>
+            </dialog>
+          </figure>
+        </div>
+      </section>
+
+      <!-- ========== TILE: Research (light) ========== -->
+      <section id="research" class="tile">
+        <div class="tile-wrap">
+          <div class="tile-copy">
+            <span class="eyebrow">Research</span>
+            <h2>From the Center to Entire Galaxy.</h2>
+            <div class="link-row">
+              <span class="pill">M–σ Relation</span>
+              <span class="pill">AGN Cosmology</span>
+              <span class="pill">AGN Outflows</span>
+              <span class="pill">Reverberation Mapping</span>
+              <span class="pill">Accretion Disks</span>
+            </div>
+            &nbsp;
+            <p>We measure lags, dynamics, and scaling relations to connect SMBHs with their galaxies and the expanding Universe.</p>
+            <div class="link-row">
+              <a class="link" href="research.html">On-going research →</a>
+            </div>
+          </div>
+          <figure class="tile-visual" aria-label="Research hero" style="background-image:url('img/index_research.png')">
+            <button class="cap-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="cap-research" aria-label="Image credit: Research">ⓘ</button>
+            <dialog id="cap-research" class="cap-pop">
+              <p class="cap-title">Black Hole Full</p>
+              <p class="cap-meta">
+                Image by <a href="https://commons.wikimedia.org/wiki/User:852278-MCS">852278-MCS</a> via
+                <a href="https://commons.wikimedia.org/wiki/File:Black_Hole_Full.png">Wikimedia Commons</a> —
+                <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
+                <em>Changes:</em> none
+              </p>
+              <form method="dialog"><button>Close</button></form>
+            </dialog>
+          </figure>
+        </div>
+      </section>
+
+      <!-- ========== TILES: Projects (two-up) ========== -->
+      <section id="projects" class="two-up">
+        <div class="tile">
+          <div class="tile-wrap">
+            <div class="tile-copy">
+              <span class="eyebrow">Projects</span>
+              <h2>SAMP</h2>
+              <p>SNU AGN Monitoring Project: spectroscopic monitoring for emission line reverberation mapping and black hole mass measurements.</p>
+              <div class="link-row"><a class="link" href="projects.html#kamp">Learn more →</a></div>
+            </div>
+            <figure class="tile-visual is-white" aria-label="KAMP image" style="background-image:url('img/index_projects_2.avif')">
+              <button class="cap-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="cap-kamp" aria-label="Image credit: KAMP">ⓘ</button>
+              <dialog id="cap-kamp" class="cap-pop">
+                <p class="cap-title">Víctor M. Blanco 4-meter Telescope under the stars</p>
+                <p class="cap-meta">
+                  Photo by [Photographer Name] on <a href="https://unsplash.com/">Unsplash</a> —
+                  <a href="https://unsplash.com/license">Unsplash License</a>.
+                  <em>Changes:</em> none
+                </p>
+                <form method="dialog"><button>Close</button></form>
+              </dialog>
+            </figure>
+          </div>
+        </div>
+        <div class="tile dark">
+          <div class="tile-wrap">
+            <div class="tile-copy">
+              <span class="eyebrow">Projects</span>
+              <h2>KAMP</h2>
+              <p>KMTNet AGN Monitoring Project: long-baseline optical monitoring for reverberation mapping and disk tomography.</p>
+              <div class="link-row"><a class="link" href="projects.html#kamp">Learn more →</a></div>
+            </div>
+            <figure class="tile-visual" aria-label="SPHEREx and 7DT" style="background-image:url('img/index_kmtnet.jpg')">
+              <button class="cap-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="cap-spherex7dt" aria-label="Image credit: SPHEREx & 7DT">ⓘ</button>
+              <dialog id="cap-spherex7dt" class="cap-pop">
+                <p class="cap-title">[Rocket / space tech — title]</p>
+                <p class="cap-meta">
+                  CTIO/NOIRLab/NSF/AURA/R. Sparks —
+                  <a href="https://noirlab.edu/public/images/CTIO-Star-Trails-CC/">Source</a> —
+                  <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
+                  <em>Changes:</em> none
+                </p>
+                <form method="dialog"><button>Close</button></form>
+              </dialog>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== TILE: People (light) ========== -->
+      <section id="people" class="tile">
+        <div class="tile-wrap">
+          <div class="tile-copy">
+            <span class="eyebrow">People</span>
+            <h2>Professor, Post-docs, Students, Interns.</h2>
+            <p>We’re an open, collaborative team, consisting of multiple Post-docs and graduate students.</p>
+            <div class="link-row"><a class="link" href="people.html">Meet the group →</a></div>
+          </div>
+          <figure class="tile-visual is-white" aria-label="People tile" style="background-image:url('img/index_people.avif')">
+            <button class="cap-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="cap-people" aria-label="Image credit: People">ⓘ</button>
+            <dialog id="cap-people" class="cap-pop">
+              <p class="cap-title">Silhouette of friends at sunset</p>
+              <p class="cap-meta">
+                Photo by <a href="https://unsplash.com/ko/@iamchang">Chang Duong</a> on
+                <a href="https://unsplash.com/photos/Sj0iMtq_Z4w">Unsplash</a> —
+                <a href="https://unsplash.com/license">Unsplash License</a>.
+                <em>Changes:</em> none
+              </p>
+              <form method="dialog"><button>Close</button></form>
+            </dialog>
+          </figure>
+        </div>
+      </section>
+
+      <!-- ========== TILE: Publications (dark) ========== -->
+      <section id="publications" class="tile dark">
+        <div class="tile-wrap">
+          <div class="tile-copy">
+            <span class="eyebrow">Publications</span>
+            <h2>Recent Papers</h2>
+            <div class="pubs">
+              <div class="pub"><strong>Mandal et al. (2025)</strong> — The Size of the Continuum Emission Region and Its Scaling Relations with Active Galactic Nucleus Luminosity and the Broad-line Region Size.</div>
+              <div class="pub"><strong>Wang et al. (2025)</strong> — Seoul National University AGN Monitoring Project. V. Velocity-resolved Hβ Reverberation Mapping and Evidence of Kinematics Evolution.</div>
+              <div class="pub"><strong>Wang et al. (2025)</strong> — Dormancy and Reawakening over Years: Eight New Recurrent Changing-look AGNs.</div>
+              <div class="pub"><strong>Ayubinia et al. (2025)</strong> — Prediction of Star Formation Rates Using an Artificial Neural Network.</div>
+            </div>
+            <div class="link-row" style="margin-top:14px"><a class="link" href="publications.html">All publications →</a></div>
+          </div>
+          <figure class="tile-visual" aria-label="Publications tile" style="background-image:url('img/index_publications.avif')">
+            <button class="cap-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="cap-pubs" aria-label="Image credit: Publications">ⓘ</button>
+            <dialog id="cap-pubs" class="cap-pop">
+              <p class="cap-title">People</p>
+              <p class="cap-meta">
+                Photo by <a href="https://unsplash.com/ko/@syinq">Susan Q Yin</a> on
+                <a href="https://unsplash.com">Unsplash</a> —
+                <a href="https://unsplash.com/license">Unsplash License</a>.
+                <em>Changes:</em> none
+              </p>
+              <form method="dialog"><button>Close</button></form>
+            </dialog>
+          </figure>
+        </div>
+      </section>
+
+      <!-- ========== TILE: Contact (light) ========== -->
+      <section id="contact" class="tile">
+        <div class="tile-wrap">
+          <div class="tile-copy">
+            <span class="eyebrow">Contact</span>
+            <h2>Let’s talk.</h2>
+            <p>Email us with questions about collaboration, data, or advising. We are always open to new opportunities.</p>
+            <div class="link-row">
+              <p>Professor Jong-Hak Woo</p><a class="link" href="mailto:jhwoo@snu.ac.kr">jhwoo@snu.ac.kr</a>
+            </div>
+            <p>Seoul National University, Seoul, 08826, Republic of Korea, Building 19, Room 205</p>
+          </div>
+          <figure class="tile-visual is-white" aria-label="Contact tile" style="background-image:url('img/index_contact.avif')">
+            <button class="cap-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="cap-contact" aria-label="Image credit: Contact">ⓘ</button>
+            <dialog id="cap-contact" class="cap-pop">
+              <p class="cap-title">Team workshop / office scene</p>
+              <p class="cap-meta">
+                Photo by <a href="https://unsplash.com/ko/@dylandgillis">Dylan Gillis</a> on
+                <a href="https://unsplash.com">Unsplash</a> —
+                <a href="https://unsplash.com/license">Unsplash License</a>.
+                <em>Changes:</em> none
+              </p>
+              <form method="dialog"><button>Close</button></form>
+            </dialog>
+          </figure>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ====================== FOOTER ====================== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+
+      <!-- Foot brand: SNU logo + group identity -->
+      <div class="foot-brand">
+        <a class="foot-logo-link" href="https://en.snu.ac.kr/" target="_blank" rel="noopener">
+          <img class="foot-logo" src="img/snu_logo.png" alt="Seoul National University logo">
+        </a>
+        <div class="foot-brand-text">
+          <strong>SNU ECHOS</strong><br>
+          AGN and Galaxy Evolution Research Group
+          <address>SNU Astronomy Program, Department of Physics and Astronomy</address>
+        </div>
+      </div>
+
+      <!-- Microfooter: compact fine print -->
+      <div class="microfooter">
+        <small>© <span id="year"></span> SNU ECHOS</small>
+        <small>Images credited in-page via ⓘ popovers</small>
+        <small>Last updated: <time id="lastmod"></time></small>
+      </div>
+
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      var y = document.getElementById('year');
+      if (y) y.textContent = new Date().getFullYear();
+      var lm = document.getElementById('lastmod');
+      if (lm) lm.textContent = new Date(document.lastModified).toISOString().slice(0,10);
+    })();
+  </script>
+
+  <script>
+    // Auto-close mobile menu when a nav link is tapped
+    (function(){
+      var t = document.getElementById('nav-toggle'); if(!t) return;
+      document.querySelectorAll('#primary-nav a').forEach(function(a){
+        a.addEventListener('click', function(){ t.checked = false; });
+      });
+    })();
+
+    // Info badge popovers
+    (function(){
+      document.querySelectorAll('.cap-btn').forEach(function(btn){
+        var id = btn.getAttribute('aria-controls');
+        var dlg = document.getElementById(id);
+        if(!dlg) return;
+        btn.addEventListener('click', function(){
+          if(!dlg.open){ dlg.showModal(); btn.setAttribute('aria-expanded','true'); }
+          else { dlg.close(); btn.setAttribute('aria-expanded','false'); }
+        });
+        dlg.addEventListener('close', function(){ btn.setAttribute('aria-expanded','false'); });
+      });
+    })();
+  </script>
+</body>
+</html>
