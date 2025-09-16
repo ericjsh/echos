@@ -416,11 +416,20 @@
       <div class="microfooter">
         <small>© <span id="year"></span> SNU ECHOS</small>
         <small>Images credited in-page via ⓘ popovers</small>
-        <small>Last updated: <time id="lastmod"></time></small>
+        <small>Beta v0.2 • Updated <time id="lastmod"></time></small>
       </div>
 
     </div>
   </footer>
+
+  <script>
+    (function(){
+      var y = document.getElementById('year');
+      if (y) y.textContent = new Date().getFullYear();
+      var lm = document.getElementById('lastmod');
+      if (lm) lm.textContent = new Date(document.lastModified).toISOString().slice(0,10);
+    })();
+  </script>
 
   <script>
     (function(){
