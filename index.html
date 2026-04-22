@@ -15,6 +15,7 @@
     content="https://images.unsplash.com/photo-1450849608880-6f787542c88a?q=80&w=1200&auto=format&fit=crop">
   <title>SNU ECHOS — Home</title>
   <link rel="icon" type="image/favicon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <style>
     /* ------------------ Tokens ------------------ */
     :root {
@@ -36,15 +37,15 @@
       --step-1: clamp(20px, 2.2vw, 22px);
       --step-2: clamp(26px, 3.6vw, 32px);
       --step-3: clamp(34px, 5.2vw, 44px);
-      --step-4: clamp(44px, 7.2vw, 64px);
+      --step-4: clamp(44px, 7.2vw, 60px);
 
       --space-1: 8px;
       --space-2: 12px;
       --space-3: 18px;
       --space-4: 28px;
       --space-5: 44px;
-      --space-6: 72px;
-      --space-7: 110px;
+      --space-6: 96px;
+      --space-7: 150px;
       --r-lg: 20px;
       --r-md: 14px;
       --r-sm: 10px;
@@ -632,7 +633,9 @@
         <a href="projects.html">Projects</a>
         <a href="people.html">People</a>
         <a href="publications.html">Publications</a>
-        <a href="contact.html">Contact</a>
+        <a href="contact.html"
+          style="background-color: var(--blue); color: #fff; padding: 8px 14px; border-radius: 999px; font-weight: 600; opacity: 1;">For
+          Prospective PhD Students</a>
       </nav>
     </div>
   </header>
@@ -641,7 +644,7 @@
     <!-- ====================== HERO ====================== -->
     <section class="hero center container">
       <h1>Prof. Jong-Hak Woo's Research Group</h1>
-      <p class="lead">AGN & Galaxy Research at Seoul National University</p>
+      <p class="lead">AGN & Galaxy Research Group at Seoul National University</p>
       <div class="cta-row">
         <a class="btn btn-primary" href="research.html">Explore Research</a>
         <a class="btn btn-ghost" href="publications.html">View Publications</a>
@@ -840,7 +843,36 @@
         </div>
       </section>
 
-
+      <!-- ========== TILE: Contact (light) ========== -->
+      <section id="contact" class="tile">
+        <div class="tile-wrap">
+          <div class="tile-copy">
+            <span class="eyebrow"></span>
+            <h2>Contact</h2>
+            <p>Email us with questions about collaboration, data, or advising. We are always open to new opportunities.
+            </p>
+            <div class="link-row">
+              <p>Professor Jong-Hak Woo</p><a class="link" href="mailto:jhwoo@snu.ac.kr">jhwoo at snu.ac.kr</a>
+            </div>
+            <p>Seoul National University, Seoul, 08826, Republic of Korea, Building 19, Room 205</p>
+          </div>
+          <figure class="tile-visual is-white" aria-label="Contact tile"
+            style="background-image:url('img/index_contact.avif')">
+            <button class="cap-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="cap-contact"
+              aria-label="Image credit: Contact">ⓘ</button>
+            <dialog id="cap-contact" class="cap-pop">
+              <p class="cap-title">Team workshop / office scene</p>
+              <p class="cap-meta">
+                Photo by <a href="https://unsplash.com/ko/@dylandgillis">Dylan Gillis</a> on
+                <a href="https://unsplash.com">Unsplash</a> —
+                <a href="https://unsplash.com/license">Unsplash License</a>.
+                <em>Changes:</em> none
+              </p>
+              <form method="dialog"><button>Close</button></form>
+            </dialog>
+          </figure>
+        </div>
+      </section>
 
     </div>
   </main>
