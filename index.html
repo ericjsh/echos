@@ -852,7 +852,7 @@
             <p>Email us with questions about collaboration, data, or advising. We are always open to new opportunities.
             </p>
             <div class="link-row">
-              <p>Professor Jong-Hak Woo</p><a class="link" href="mailto:jhwoo@snu.ac.kr">jhwoo at snu.ac.kr</a>
+              <p>Professor Jong-Hak Woo</p><a class="link email-link" data-u="jhwoo" data-d="snu.ac.kr" href="#">jhwoo at snu.ac.kr</a>
             </div>
             <p>Seoul National University, Seoul, 08826, Republic of Korea, Building 19, Room 205</p>
           </div>
@@ -932,6 +932,22 @@
           else { dlg.close(); btn.setAttribute('aria-expanded', 'false'); }
         });
         dlg.addEventListener('close', function () { btn.setAttribute('aria-expanded', 'false'); });
+      });
+    })();
+  </script>
+
+  <!-- email link handler -->
+  <script>
+    (function () {
+      document.querySelectorAll('.email-link').forEach(function (el) {
+        var u = el.getAttribute('data-u');
+        var d = el.getAttribute('data-d');
+        if (u && d) {
+          el.addEventListener('click', function (e) {
+            e.preventDefault();
+            window.location.href = 'mailto:' + u + '@' + d;
+          });
+        }
       });
     })();
   </script>

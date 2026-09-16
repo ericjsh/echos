@@ -578,7 +578,7 @@
           <div class="contact-info-row">
             <div class="contact-info-label">Email</div>
             <div class="contact-info-value">
-              <a href="mailto:jhwoo@snu.ac.kr">jhwoo at snu.ac.kr</a>
+              <a class="email-link" data-u="jhwoo" data-d="snu.ac.kr" href="#">jhwoo at snu.ac.kr</a>
             </div>
           </div>
           <div class="contact-info-row">
@@ -636,6 +636,22 @@
     (function () {
       var t = document.getElementById('nav-toggle'); if (!t) return;
       document.querySelectorAll('#primary-nav a').forEach(function (a) { a.addEventListener('click', function () { t.checked = false; }); });
+    })();
+  </script>
+
+  <!-- email link handler -->
+  <script>
+    (function () {
+      document.querySelectorAll('.email-link').forEach(function (el) {
+        var u = el.getAttribute('data-u');
+        var d = el.getAttribute('data-d');
+        if (u && d) {
+          el.addEventListener('click', function (e) {
+            e.preventDefault();
+            window.location.href = 'mailto:' + u + '@' + d;
+          });
+        }
+      });
     })();
   </script>
 </body>
