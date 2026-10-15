@@ -390,6 +390,25 @@
       background: #fff
     }
 
+    .pill-row {
+      margin-top: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--hairline);
+      background: #f8fafc;
+      color: #2b2f35;
+      font-weight: 600;
+      font-size: 12.5px;
+      line-height: 1.4;
+    }
+
     .back-row {
       margin-top: var(--space-5);
       border-top: 1px solid var(--hairline);
@@ -534,7 +553,7 @@
     <section class="page-hero">
       <div class="container">
         <h1>People</h1>
-        <p>Professor, post‑docs, graduate students, and alumni of the SNU ECHOS Research Group.</p>
+        <p>Professor, post‑docs, graduate students, interns, and alumni of the SNU ECHOS Research Group.</p>
       </div>
     </section>
 
@@ -554,7 +573,7 @@
               <h3>Jong‑Hak Woo<a href="https://orcid.org/0000-0002-8055-5465" target="_blank" rel="noopener"
                   aria-label="ORCID"><i class="fa-brands fa-orcid orcid-icon"></i></a></h3>
               <div class="link-row">
-                <a class="link email-link" data-u="jhwoo" data-d="astro.snu.ac.kr" href="#">jhwoo at astro.snu.ac.kr</a>
+                <a class="link email-link" data-u="jhwoo" data-d="snu.ac.kr" href="#">jhwoo at snu.ac.kr</a>
               </div>
             </div>
           </article>
@@ -655,6 +674,59 @@
         </div>
       </section>
 
+      <!-- Interns -->
+      <section class="group" aria-labelledby="g-interns">
+        <h2 id="g-interns">Interns</h2>
+        <div class="people-grid">
+
+
+          <!-- Jaehyun Chun -->
+          <article class="person-card">
+            <div class="avatar">
+              <img src="https://wallpapers.com/images/thumbnail/anonymous-businessman-silhouette-020wim06dz7nqb9i.webp"
+                alt="Photo of Jaehyun Chun (placeholder)">
+            </div>
+            <div class="person-body">
+              <h3>Jaehyun Chun</h3>
+              <div class="link-row">
+                <a class="link email-link" data-u="xornjs0622" data-d="snu.ac.kr" href="#">xornjs0622 at snu.ac.kr</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Junsik Yoon -->
+          <article class="person-card">
+            <div class="avatar">
+              <img src="https://wallpapers.com/images/thumbnail/anonymous-businessman-silhouette-020wim06dz7nqb9i.webp"
+                alt="Photo of Junsik Yoon (placeholder)">
+            </div>
+            <div class="person-body">
+              <h3>Junsik Yoon</h3>
+              <div class="link-row">
+                <a class="link email-link" data-u="yjs8259" data-d="snu.ac.kr" href="#">yjs8259 at snu.ac.kr</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Hoyeon Noh -->
+          <article class="person-card">
+            <div class="avatar">
+              <img src="https://wallpapers.com/images/thumbnail/anonymous-businessman-silhouette-020wim06dz7nqb9i.webp"
+                alt="Photo of Hoyeon Noh (placeholder)">
+            </div>
+            <div class="person-body">
+              <h3>Hoyeon Noh</h3>
+              <div class="link-row">
+                <a class="link email-link" data-u="r136a1234" data-d="gmail.com" href="#">r136a1234 at gmail.com</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <div class="back-row"></div>
+
       <!-- Alumni -->
       <section class="group" aria-labelledby="g-alumni">
         <h2 id="g-alumni">Alumni</h2>
@@ -672,6 +744,9 @@
               <div class="link-row">
                 <a class="link email-link" data-u="kcs1996kcs" data-d="snu.ac.kr" href="#">kcs1996kcs at snu.ac.kr</a>
               </div>
+              <div class="pill-row">
+                <span class="pill">Student - PhD 2026.08</span>
+              </div>
               <p class="meta">Participated until 2026.<em></em></p>
             </div>
           </article>
@@ -686,7 +761,10 @@
               <h3>Ashraf Ayubinia<a href="https://orcid.org/0009-0002-9526-5820" target="_blank" rel="noopener"
                   aria-label="ORCID"><i class="fa-brands fa-orcid orcid-icon"></i></a></h3>
               <div class="link-row">
-                <a class="link email-link" data-u="a.ayubinia" data-d="gmail.com" href="#">a.ayubinia (at) gmail.com</a>
+                <a class="link email-link" data-u="a.ayubinia" data-d="gmail.com" href="#">a.ayubinia at gmail.com</a>
+              </div>
+              <div class="pill-row">
+                <span class="pill">Former Postdoc</span>
               </div>
               <p class="meta">Participated until 2026.<em></em></p>
             </div>
@@ -705,6 +783,9 @@
                 <a class="link email-link" data-u="dhson2" data-d="astro.snu.ac.kr" href="#">dhson2 at
                   astro.snu.ac.kr</a>
               </div>
+              <div class="pill-row">
+                <span class="pill">Former Postdoc</span>
+              </div>
               <p class="meta">Participated until 2025.<em></em></p>
             </div>
           </article>
@@ -722,6 +803,9 @@
                 <a class="link email-link" data-u="wangshu100002" data-d="gmail.com" href="#">wangshu100002 at
                   gmail.com</a>
               </div>
+              <div class="pill-row">
+                <span class="pill">Former Postdoc</span>
+              </div>
               <p class="meta">Participated until 2025.<em><!-- Replace: e.g. data reduction, photometry. --></em></p>
             </div>
           </article>
@@ -737,6 +821,9 @@
                   aria-label="ORCID"><i class="fa-brands fa-orcid orcid-icon"></i></a></h3>
               <div class="link-row">
                 <a class="link email-link" data-u="hcho.astro" data-d="gmail.com" href="#">hcho.astro at gmail.com</a>
+              </div>
+              <div class="pill-row">
+                <span class="pill">Student - PhD 2025.02</span>
               </div>
               <p class="meta">Participated until 2025.<em><!-- Replace: e.g. ML for AGN variability. --></em></p>
             </div>
@@ -755,6 +842,9 @@
                 <a class="link email-link" data-u="amitastro.am" data-d="gmail.com" href="#">amitastro.am at
                   gmail.com</a>
               </div>
+              <div class="pill-row">
+                <span class="pill">Former Postdoc</span>
+              </div>
               <p class="meta">Participated until 2025.<em><!-- Replace: e.g. ML for AGN variability. --></em></p>
             </div>
           </article>
@@ -768,39 +858,8 @@
   </main>
 
   <!-- ====================== FOOTER ====================== -->
-  <footer class="site-footer" role="contentinfo">
-    <div class="container footer-inner">
-
-      <!-- Foot brand: SNU logo + group identity -->
-      <div class="foot-brand">
-        <a class="foot-logo-link" href="https://en.snu.ac.kr/" target="_blank" rel="noopener">
-          <img class="foot-logo" src="img/snu_logo.png" alt="Seoul National University logo">
-        </a>
-        <div class="foot-brand-text">
-          <strong>SNU ECHOS</strong><br>
-          AGN & Galaxy Research Group at Seoul National University
-          <address>SNU Astronomy Program, Department of Physics and Astronomy</address>
-        </div>
-      </div>
-
-      <!-- Microfooter: compact fine print -->
-      <div class="microfooter">
-        <small>© <span id="year"></span> SNU ECHOS </small>
-        <small>Images credited in-page via ⓘ popovers</small>
-        <small>Beta v0.2.2 • Updated <time id="lastmod"></time></small>
-      </div>
-
-    </div>
-  </footer>
-
-  <script>
-    (function () {
-      var y = document.getElementById('year');
-      if (y) y.textContent = new Date().getFullYear();
-      var lm = document.getElementById('lastmod');
-      if (lm) lm.textContent = new Date(document.lastModified).toISOString().slice(0, 10);
-    })();
-  </script>
+  <div id="site-footer"></div>
+  <script src="footer.js"></script>
 
   <!-- auto-close mobile menu when a link is tapped -->
   <script>

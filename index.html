@@ -321,7 +321,8 @@
       border: 1px solid var(--hairline);
       border-radius: var(--r-lg);
       overflow: hidden;
-      background: #fff
+      background: #fff;
+      box-shadow: var(--elev);
     }
 
     .tile.dark {
@@ -643,8 +644,8 @@
   <main id="main">
     <!-- ====================== HERO ====================== -->
     <section class="hero center container">
-      <h1>Prof. Jong-Hak Woo's Research Group</h1>
-      <p class="lead">AGN & Galaxy Research Group at Seoul National University</p>
+      <h1>AGN & Galaxy Research Group</h1>
+      <p class="lead">Led by Professor Jong-Hak Woo</p>
       <div class="cta-row">
         <a class="btn btn-primary" href="research.html">Explore Research</a>
         <a class="btn btn-ghost" href="publications.html">View Publications</a>
@@ -813,14 +814,14 @@
             <span class="eyebrow">Publications</span>
             <h2>Recent Papers</h2>
             <div class="pubs">
-              <div class="pub"><strong>Mandal et al. (2025)</strong> — The Size of the Continuum Emission Region and Its
-                Scaling Relations with Active Galactic Nucleus Luminosity and the Broad-line Region Size.</div>
-              <div class="pub"><strong>Wang et al. (2025)</strong> — Seoul National University AGN Monitoring Project.
-                V. Velocity-resolved Hβ Reverberation Mapping and Evidence of Kinematics Evolution.</div>
-              <div class="pub"><strong>Wang et al. (2025)</strong> — Dormancy and Reawakening over Years: Eight New
-                Recurrent Changing-look AGNs.</div>
-              <div class="pub"><strong>Ayubinia et al. (2025)</strong> — Prediction of Star Formation Rates Using an
-                Artificial Neural Network.</div>
+              <div class="pub"><strong>Jung & Woo (2026)</strong> — Unveiling Accretion-disk Reverberation
+                Beneath BLR Contamination with TILDE</div>
+              <div class="pub"><strong>Woo et al. (2026)</strong> — New black hole mass calibrations and the fundamental
+                plane of the broad-line region size,
+                luminosity, and velocity</div>
+              <div class="pub"><strong>Wang et al. (2026)</strong> — Dynamical Modeling of the Broad-line Region with
+                High-mass Active Galactic Nuclei and Constraints on
+                the Virial Factor</div>
             </div>
             <div class="link-row" style="margin-top:14px"><a class="link" href="publications.html">All publications
                 →</a></div>
@@ -852,7 +853,8 @@
             <p>Email us with questions about collaboration, data, or advising. We are always open to new opportunities.
             </p>
             <div class="link-row">
-              <p>Professor Jong-Hak Woo</p><a class="link email-link" data-u="jhwoo" data-d="snu.ac.kr" href="#">jhwoo at snu.ac.kr</a>
+              <p>Professor Jong-Hak Woo</p><a class="link email-link" data-u="jhwoo" data-d="snu.ac.kr" href="#">jhwoo
+                at snu.ac.kr</a>
             </div>
             <p>Seoul National University, Seoul, 08826, Republic of Korea, Building 19, Room 205</p>
           </div>
@@ -878,39 +880,8 @@
   </main>
 
   <!-- ====================== FOOTER ====================== -->
-  <footer class="site-footer" role="contentinfo">
-    <div class="container footer-inner">
-
-      <!-- Foot brand: SNU logo + group identity -->
-      <div class="foot-brand">
-        <a class="foot-logo-link" href="https://en.snu.ac.kr/" target="_blank" rel="noopener">
-          <img class="foot-logo" src="img/snu_logo.png" alt="Seoul National University logo">
-        </a>
-        <div class="foot-brand-text">
-          <strong>SNU ECHOS</strong><br>
-          AGN & Galaxy Research Group at Seoul National University
-          <address>SNU Astronomy Program, Department of Physics and Astronomy</address>
-        </div>
-      </div>
-
-      <!-- Microfooter: compact fine print -->
-      <div class="microfooter">
-        <small>© <span id="year"></span> SNU ECHOS</small>
-        <small>Images credited in-page via ⓘ popovers</small>
-        <small>Beta v0.2.2 • Updated <time id="lastmod"></time></small>
-      </div>
-
-    </div>
-  </footer>
-
-  <script>
-    (function () {
-      var y = document.getElementById('year');
-      if (y) y.textContent = new Date().getFullYear();
-      var lm = document.getElementById('lastmod');
-      if (lm) lm.textContent = new Date(document.lastModified).toISOString().slice(0, 10);
-    })();
-  </script>
+  <div id="site-footer"></div>
+  <script src="footer.js"></script>
 
   <script>
     // Auto-close mobile menu when a nav link is tapped

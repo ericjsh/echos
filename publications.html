@@ -297,6 +297,58 @@
       font-size: 13px;
     }
 
+    /* Google Scholar Banner */
+    .scholar-banner {
+      border: 1px solid var(--hairline);
+      border-radius: var(--r-md);
+      background: #f8fafc;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      transition: all .2s ease;
+    }
+
+    .scholar-banner:hover {
+      border-color: var(--blue);
+      background: #f0f7ff;
+      box-shadow: 0 4px 16px rgba(10, 132, 255, .08);
+    }
+
+    .scholar-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--blue-ink);
+      font-weight: 600;
+      font-size: 15px;
+      text-decoration: none;
+      width: 100%;
+    }
+
+    .scholar-link:hover {
+      color: var(--blue);
+    }
+
+    .scholar-icon {
+      color: var(--blue);
+      flex-shrink: 0;
+    }
+
+    .scholar-link .arrow {
+      margin-left: auto;
+      font-size: 16px;
+      color: var(--blue);
+      transition: transform .2s ease;
+    }
+
+    .scholar-banner:hover .arrow {
+      transform: translate(2px, -2px);
+    }
+
+    .scholar-banner + .year {
+      margin-top: var(--space-2);
+    }
+
     .paper {
       border: 1px solid var(--hairline);
       border-radius: var(--r-lg);
@@ -492,7 +544,9 @@
         <a href="projects.html">Projects</a>
         <a href="people.html">People</a>
         <a class="active" href="publications.html">Publications</a>
-        <a href="contact.html" style="background-color: var(--blue); color: #fff; padding: 8px 14px; border-radius: 999px; font-weight: 600; opacity: 1;">For Prospective PhD Students</a>
+        <a href="contact.html"
+          style="background-color: var(--blue); color: #fff; padding: 8px 14px; border-radius: 999px; font-weight: 600; opacity: 1;">For
+          Prospective PhD Students</a>
       </nav>
     </div>
   </header>
@@ -509,18 +563,71 @@
     <!-- ====================== PUBLICATION LIST ====================== -->
     <div class="container pubs">
 
+      <div class="scholar-banner">
+        <a href="https://scholar.google.com/citations?hl=en&user=r0MiNlEAAAAJ&view_op=list_works&sortby=pubdate"
+          target="_blank" rel="noopener" class="scholar-link">
+          <svg class="scholar-icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+            <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z M3.89 9.87L12 5.45l8.11 4.42L12 14.28 3.89 9.87z M12 16.27l-6-3.27v4.61c0 2.5 3.01 4.39 6 4.39s6-1.89 6-4.39v-4.61L12 16.27z"/>
+          </svg>
+          <span>Click here to view Prof. Woo's publication list (Google Scholar)</span>
+          <span class="arrow">↗</span>
+        </a>
+      </div>
+
       <div class="year">2026</div>
 
       <article class="paper" aria-labelledby="p1">
-        <p class="meta">The Astrophysical Journal, Accepted for publication (April 2026)</p>
+        <p class="meta">The Astrophysical Journal, Accepted for publication (October 2026)</p>
+        <h3 id="p1">Unveiling Accretion-disk Reverberation Beneath BLR Contamination with TILDE</h3>
+        <p class="meta">Jung, Sungho; Woo, Jong-Hak</p>
+        <div class="links">
+          <a class="btn primary" href="#" target="_blank" rel="noopener">View paper</a>
+          <a class="btn" href="#" target="_blank" rel="noopener">arXiv</a>
+          <a class="btn" href="#" target="_blank" rel="noopener">DOI</a>
+        </div>
+      </article>
+
+      <article class="paper" aria-labelledby="p2026-kwak">
+        <p class="meta">The Astrophysical Journal, Volume 1008, Issue 2, id.201 (September 2026)</p>
+        <h3 id="p2026-kwak">Recycled Gas Dominates the Metal-rich Fuel of Supermassive Black Holes</h3>
+        <p class="meta">Kwak, Dongyun ; Choi, Ena ; Jhee, Hannah ; Somerville, Rachel S. ; Naab, Thorsten ; Hirschmann,
+          Michaela ; Shin, Jaejin ; Woo, Jong-Hak</p>
+        <div class="links">
+          <a class="btn primary" href="https://iopscience.iop.org/article/10.3847/1538-4357/ae9958/pdf" target="_blank"
+            rel="noopener">View paper</a>
+          <a class="btn" href="https://arxiv.org/abs/2608.12462" target="_blank" rel="noopener">arXiv</a>
+          <a class="btn" href="https://iopscience.iop.org/article/10.3847/1538-4357/ae9958" target="_blank"
+            rel="noopener">DOI</a>
+        </div>
+      </article>
+
+      <article class="paper" aria-labelledby="p2026-villafana">
+        <p class="meta">The Astrophysical Journal, Volume 1004, Issue 2, id.151 (June 2026)</p>
+        <h3 id="p2026-villafana">Can Broad-line Region Line Profile Shape Improve Single-epoch Black Hole Mass
+          Estimates?</h3>
+        <p class="meta">Villafaña, Lizvette ; Treu, Tommaso ; Wang, Shu ; Bentz, Misty C. ; Brewer, Brendon J. ; Barth,
+          Aaron J. ; Woo, Jong-Hak ; Malkan, Matthew A. ; Bennert, Vardha N. ; U, Vivian</p>
+        <div class="links">
+          <a class="btn primary" href="https://iopscience.iop.org/article/10.3847/1538-4357/ae69cf/pdf" target="_blank"
+            rel="noopener">View paper</a>
+          <a class="btn" href="https://arxiv.org/abs/2604.24901" target="_blank" rel="noopener">arXiv</a>
+          <a class="btn" href="https://iopscience.iop.org/article/10.3847/1538-4357/ae69cf" target="_blank"
+            rel="noopener">DOI</a>
+        </div>
+      </article>
+
+      <article class="paper" aria-labelledby="p1">
+        <p class="meta">The Astrophysical Journal, Volume 1003, Issue 2, id.123, 14 pp. (June 2026)</p>
         <h3 id="p1">New black hole mass calibrations and the fundamental plane of the broad-line region size,
           luminosity, and velocity
         </h3>
         <p class="meta">Woo, Jong-Hak ; Kim, Jimin ; Cho, Hojin ; Wang, Shu</p>
         <div class="links">
-          <a class="btn primary" href="#" target="_blank" rel="noopener">View paper</a>
+          <a class="btn primary" href="https://iopscience.iop.org/article/10.3847/1538-4357/ae6109/pdf" target="_blank"
+            rel="noopener">View paper</a>
           <a class="btn" href="https://arxiv.org/abs/2603.07047" target="_blank" rel="noopener">arXiv</a>
-          <a class="btn" href="#" target="_blank" rel="noopener">DOI</a>
+          <a class="btn" href="https://iopscience.iop.org/article/10.3847/1538-4357/ae6109" target="_blank"
+            rel="noopener">DOI</a>
         </div>
       </article>
 
@@ -534,6 +641,34 @@
           <a class="btn primary" href="https://iopscience.iop.org/article/10.3847/1538-4357/ae4699/pdf" target="_blank"
             rel="noopener">View paper</a>
           <a class="btn" href="https://iopscience.iop.org/article/10.3847/1538-4357/ae4699" target="_blank"
+            rel="noopener">DOI</a>
+        </div>
+      </article>
+
+      <article class="paper" aria-labelledby="p2026-bass">
+        <p class="meta">Astronomy &amp; Astrophysics, Volume 708, id.A268 (April 2026)</p>
+        <h3 id="p2026-bass">BASS. LI. Cool gas supply of HI-massive local Seyfert galaxies</h3>
+        <p class="meta">Kim, Jeein ; Chung, Aeree ; Wong, Oiwei Ivy ; Baek, Junhyun ; Murugeshan, Chandrashekar ; Koss,
+          Michael J. ; Oh, Kyuseok ; Bauer, Franz Erik ; Chang, Chin-Shin ; Diaz, Yaherlyn ; Ichikawa, Kohei ; Kakkad,
+          Darshan ; Kim, Minjin ; Magno, Macon ; del Moral-Castro, Ignacio ; Mushotzky, Richard ; Peca, Alessandro ;
+          Ricci, Claudio ; Signorini, Matilde ; Parra Tello, Miguel ; Trakhtenbrot, Benny ; Woo, Jong-Hak</p>
+        <div class="links">
+          <a class="btn primary" href="https://doi.org/10.1051/0004-6361/202556901" target="_blank" rel="noopener">View
+            paper</a>
+          <a class="btn" href="https://arxiv.org/abs/2603.15752" target="_blank" rel="noopener">arXiv</a>
+          <a class="btn" href="https://doi.org/10.1051/0004-6361/202556901" target="_blank" rel="noopener">DOI</a>
+        </div>
+      </article>
+
+      <article class="paper" aria-labelledby="p2026-yadav">
+        <p class="meta">The Astrophysical Journal, Volume 998, Issue 2, id.267 (February 2026)</p>
+        <h3 id="p2026-yadav">Environment and Gas Fraction in Type 2 AGN versus Non-AGN Galaxies</h3>
+        <p class="meta">Yadav, Jyoti ; Woo, Jong-Hak ; Ayubinia, Ashraf</p>
+        <div class="links">
+          <a class="btn primary" href="https://iopscience.iop.org/article/10.3847/1538-4357/ae3c06/pdf" target="_blank"
+            rel="noopener">View paper</a>
+          <a class="btn" href="https://arxiv.org/abs/2601.13375" target="_blank" rel="noopener">arXiv</a>
+          <a class="btn" href="https://iopscience.iop.org/article/10.3847/1538-4357/ae3c06" target="_blank"
             rel="noopener">DOI</a>
         </div>
       </article>
@@ -704,39 +839,8 @@
   </main>
 
   <!-- ====================== FOOTER ====================== -->
-  <footer class="site-footer" role="contentinfo">
-    <div class="container footer-inner">
-
-      <!-- Foot brand: SNU logo + group identity -->
-      <div class="foot-brand">
-        <a class="foot-logo-link" href="https://en.snu.ac.kr/" target="_blank" rel="noopener">
-          <img class="foot-logo" src="img/snu_logo.png" alt="Seoul National University logo">
-        </a>
-        <div class="foot-brand-text">
-          <strong>SNU ECHOS</strong><br>
-          AGN & Galaxy Research Group at Seoul National University
-          <address>SNU Astronomy Program, Department of Physics and Astronomy</address>
-        </div>
-      </div>
-
-      <!-- Microfooter: compact fine print -->
-      <div class="microfooter">
-        <small>© <span id="year"></span> SNU ECHOS</small>
-        <small>Images credited in-page via ⓘ popovers</small>
-        <small>Beta v0.2.2 • Updated <time id="lastmod"></time></small>
-      </div>
-
-    </div>
-  </footer>
-
-  <script>
-    (function () {
-      var y = document.getElementById('year');
-      if (y) y.textContent = new Date().getFullYear();
-      var lm = document.getElementById('lastmod');
-      if (lm) lm.textContent = new Date(document.lastModified).toISOString().slice(0, 10);
-    })();
-  </script>
+  <div id="site-footer"></div>
+  <script src="footer.js"></script>
 
   <!-- Auto-close mobile menu when a nav link is tapped -->
   <script>
