@@ -498,29 +498,8 @@
 
 <body>
   <!-- ====================== NAV ====================== -->
-  <header class="site-header">
-    <div class="container nav-inner">
-      <a class="brand" href="index.html" aria-label="Go to home">
-        <span class="brand-mark"><img src="snuecho_banner_design.001.png" alt="SNU ECHOS"></span>
-      </a>
-
-      <!-- Mobile menu toggle + button (order matters: input → label → nav) -->
-      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">
-      <label for="nav-toggle" class="hamburger" aria-label="Open menu">
-        <span></span><span></span><span></span>
-      </label>
-
-      <nav id="primary-nav" class="nav" aria-label="Primary">
-        <a href="research.html">Research</a>
-        <a href="projects.html">Projects</a>
-        <a href="people.html">People</a>
-        <a href="publications.html">Publications</a>
-        <a class="active" href="contact.html"
-          style="background-color: var(--blue); color: #fff; padding: 8px 14px; border-radius: 999px; font-weight: 600; opacity: 1;">For
-          Prospective PhD Students</a>
-      </nav>
-    </div>
-  </header>
+  <div id="site-header"></div>
+  <script src="nav.js"></script>
 
   <main>
     <!-- ====================== PAGE HERO ====================== -->

@@ -345,7 +345,7 @@
       transform: translate(2px, -2px);
     }
 
-    .scholar-banner + .year {
+    .scholar-banner+.year {
       margin-top: var(--space-2);
     }
 
@@ -530,26 +530,8 @@
 
 <body>
   <!-- ====================== NAV ====================== -->
-  <header class="site-header">
-    <div class="container nav-inner">
-      <a class="brand" href="index.html" aria-label="Go to home">
-        <span class="brand-mark"><img src="snuecho_banner_design.001.png" alt="M"></span>
-      </a>
-
-      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">
-      <label for="nav-toggle" class="hamburger" aria-label="Open menu"><span></span><span></span><span></span></label>
-
-      <nav id="primary-nav" class="nav" aria-label="Primary">
-        <a href="research.html">Research</a>
-        <a href="projects.html">Projects</a>
-        <a href="people.html">People</a>
-        <a class="active" href="publications.html">Publications</a>
-        <a href="contact.html"
-          style="background-color: var(--blue); color: #fff; padding: 8px 14px; border-radius: 999px; font-weight: 600; opacity: 1;">For
-          Prospective PhD Students</a>
-      </nav>
-    </div>
-  </header>
+  <div id="site-header"></div>
+  <script src="nav.js"></script>
 
   <main>
     <!-- ====================== HERO ====================== -->
@@ -567,270 +549,18 @@
         <a href="https://scholar.google.com/citations?hl=en&user=r0MiNlEAAAAJ&view_op=list_works&sortby=pubdate"
           target="_blank" rel="noopener" class="scholar-link">
           <svg class="scholar-icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
-            <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z M3.89 9.87L12 5.45l8.11 4.42L12 14.28 3.89 9.87z M12 16.27l-6-3.27v4.61c0 2.5 3.01 4.39 6 4.39s6-1.89 6-4.39v-4.61L12 16.27z"/>
+            <path
+              d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z M3.89 9.87L12 5.45l8.11 4.42L12 14.28 3.89 9.87z M12 16.27l-6-3.27v4.61c0 2.5 3.01 4.39 6 4.39s6-1.89 6-4.39v-4.61L12 16.27z" />
           </svg>
-          <span>Click here to view Prof. Woo's publication list (Google Scholar)</span>
+          <span>Prof. Woo's publication list (Google Scholar)</span>
           <span class="arrow">↗</span>
         </a>
       </div>
 
-      <div class="year">2026</div>
-
-      <article class="paper" aria-labelledby="p1">
-        <p class="meta">The Astrophysical Journal, Accepted for publication (October 2026)</p>
-        <h3 id="p1">Unveiling Accretion-disk Reverberation Beneath BLR Contamination with TILDE</h3>
-        <p class="meta">Jung, Sungho; Woo, Jong-Hak</p>
-        <div class="links">
-          <a class="btn primary" href="#" target="_blank" rel="noopener">View paper</a>
-          <a class="btn" href="#" target="_blank" rel="noopener">arXiv</a>
-          <a class="btn" href="#" target="_blank" rel="noopener">DOI</a>
-        </div>
-      </article>
-
-      <article class="paper" aria-labelledby="p2026-kwak">
-        <p class="meta">The Astrophysical Journal, Volume 1008, Issue 2, id.201 (September 2026)</p>
-        <h3 id="p2026-kwak">Recycled Gas Dominates the Metal-rich Fuel of Supermassive Black Holes</h3>
-        <p class="meta">Kwak, Dongyun ; Choi, Ena ; Jhee, Hannah ; Somerville, Rachel S. ; Naab, Thorsten ; Hirschmann,
-          Michaela ; Shin, Jaejin ; Woo, Jong-Hak</p>
-        <div class="links">
-          <a class="btn primary" href="https://iopscience.iop.org/article/10.3847/1538-4357/ae9958/pdf" target="_blank"
-            rel="noopener">View paper</a>
-          <a class="btn" href="https://arxiv.org/abs/2608.12462" target="_blank" rel="noopener">arXiv</a>
-          <a class="btn" href="https://iopscience.iop.org/article/10.3847/1538-4357/ae9958" target="_blank"
-            rel="noopener">DOI</a>
-        </div>
-      </article>
-
-      <article class="paper" aria-labelledby="p2026-villafana">
-        <p class="meta">The Astrophysical Journal, Volume 1004, Issue 2, id.151 (June 2026)</p>
-        <h3 id="p2026-villafana">Can Broad-line Region Line Profile Shape Improve Single-epoch Black Hole Mass
-          Estimates?</h3>
-        <p class="meta">Villafaña, Lizvette ; Treu, Tommaso ; Wang, Shu ; Bentz, Misty C. ; Brewer, Brendon J. ; Barth,
-          Aaron J. ; Woo, Jong-Hak ; Malkan, Matthew A. ; Bennert, Vardha N. ; U, Vivian</p>
-        <div class="links">
-          <a class="btn primary" href="https://iopscience.iop.org/article/10.3847/1538-4357/ae69cf/pdf" target="_blank"
-            rel="noopener">View paper</a>
-          <a class="btn" href="https://arxiv.org/abs/2604.24901" target="_blank" rel="noopener">arXiv</a>
-          <a class="btn" href="https://iopscience.iop.org/article/10.3847/1538-4357/ae69cf" target="_blank"
-            rel="noopener">DOI</a>
-        </div>
-      </article>
-
-      <article class="paper" aria-labelledby="p1">
-        <p class="meta">The Astrophysical Journal, Volume 1003, Issue 2, id.123, 14 pp. (June 2026)</p>
-        <h3 id="p1">New black hole mass calibrations and the fundamental plane of the broad-line region size,
-          luminosity, and velocity
-        </h3>
-        <p class="meta">Woo, Jong-Hak ; Kim, Jimin ; Cho, Hojin ; Wang, Shu</p>
-        <div class="links">
-          <a class="btn primary" href="https://iopscience.iop.org/article/10.3847/1538-4357/ae6109/pdf" target="_blank"
-            rel="noopener">View paper</a>
-          <a class="btn" href="https://arxiv.org/abs/2603.07047" target="_blank" rel="noopener">arXiv</a>
-          <a class="btn" href="https://iopscience.iop.org/article/10.3847/1538-4357/ae6109" target="_blank"
-            rel="noopener">DOI</a>
-        </div>
-      </article>
-
-      <article class="paper" aria-labelledby="p1">
-        <p class="meta">The Astrophysical Journal, Volume 1000, Issue 2, id.180, 23 pp. (April 2026)</p>
-        <h3 id="p1">Dynamical Modeling of the Broad-line Region with High-mass Active Galactic Nuclei and Constraints on
-          the Virial Factor
-        </h3>
-        <p class="meta">Wang, Shu ; Woo, Jong-Hak ; Villafaña, Lizvette ; Treu, Tommaso ; Gallo, Elena </p>
-        <div class="links">
-          <a class="btn primary" href="https://iopscience.iop.org/article/10.3847/1538-4357/ae4699/pdf" target="_blank"
-            rel="noopener">View paper</a>
-          <a class="btn" href="https://iopscience.iop.org/article/10.3847/1538-4357/ae4699" target="_blank"
-            rel="noopener">DOI</a>
-        </div>
-      </article>
-
-      <article class="paper" aria-labelledby="p2026-bass">
-        <p class="meta">Astronomy &amp; Astrophysics, Volume 708, id.A268 (April 2026)</p>
-        <h3 id="p2026-bass">BASS. LI. Cool gas supply of HI-massive local Seyfert galaxies</h3>
-        <p class="meta">Kim, Jeein ; Chung, Aeree ; Wong, Oiwei Ivy ; Baek, Junhyun ; Murugeshan, Chandrashekar ; Koss,
-          Michael J. ; Oh, Kyuseok ; Bauer, Franz Erik ; Chang, Chin-Shin ; Diaz, Yaherlyn ; Ichikawa, Kohei ; Kakkad,
-          Darshan ; Kim, Minjin ; Magno, Macon ; del Moral-Castro, Ignacio ; Mushotzky, Richard ; Peca, Alessandro ;
-          Ricci, Claudio ; Signorini, Matilde ; Parra Tello, Miguel ; Trakhtenbrot, Benny ; Woo, Jong-Hak</p>
-        <div class="links">
-          <a class="btn primary" href="https://doi.org/10.1051/0004-6361/202556901" target="_blank" rel="noopener">View
-            paper</a>
-          <a class="btn" href="https://arxiv.org/abs/2603.15752" target="_blank" rel="noopener">arXiv</a>
-          <a class="btn" href="https://doi.org/10.1051/0004-6361/202556901" target="_blank" rel="noopener">DOI</a>
-        </div>
-      </article>
-
-      <article class="paper" aria-labelledby="p2026-yadav">
-        <p class="meta">The Astrophysical Journal, Volume 998, Issue 2, id.267 (February 2026)</p>
-        <h3 id="p2026-yadav">Environment and Gas Fraction in Type 2 AGN versus Non-AGN Galaxies</h3>
-        <p class="meta">Yadav, Jyoti ; Woo, Jong-Hak ; Ayubinia, Ashraf</p>
-        <div class="links">
-          <a class="btn primary" href="https://iopscience.iop.org/article/10.3847/1538-4357/ae3c06/pdf" target="_blank"
-            rel="noopener">View paper</a>
-          <a class="btn" href="https://arxiv.org/abs/2601.13375" target="_blank" rel="noopener">arXiv</a>
-          <a class="btn" href="https://iopscience.iop.org/article/10.3847/1538-4357/ae3c06" target="_blank"
-            rel="noopener">DOI</a>
-        </div>
-      </article>
-
-      <article class="paper" aria-labelledby="p1">
-        <p class="meta">The Astrophysical Journal, Volume 994, Issue 2, id.188, 16 pp. (February 2026)</p>
-        <h3 id="p1">A Modified 3D Biconical Outflow Model: Spatial Constraints on Active Galactic Nuclei─Driven Outflows
-        </h3>
-        <p class="meta">Kim, Changseok ; Woo, Jong-Hak</p>
-        <div class="links">
-          <a class="btn primary" href="https://iopscience.iop.org/article/10.3847/1538-4357/ae3754/pdf" target="_blank"
-            rel="noopener">View paper</a>
-          <a class="btn" href="https://arxiv.org/abs/2511.07861" target="_blank" rel="noopener">arXiv</a>
-          <a class="btn" href="https://iopscience.iop.org/article/10.3847/1538-4357/ae3754" target="_blank"
-            rel="noopener">DOI</a>
-        </div>
-      </article>
-
-      <div class="year">2025</div>
-
-      <article class="paper" aria-labelledby="p1">
-        <p class="meta">The Astrophysical Journal, Volume 994, Issue 2, id.188, 16 pp. (December 2025)</p>
-        <h3 id="p1">Scaling Relations of the Dusty Torus with Luminosity and the Broad-line Region</h3>
-        <p class="meta">Ayubinia, Ashraf ; Woo, Jong-Hak ; Wang, Shu ; Mandal, Amit Kumar ; Son, Donghoon</p>
-        <div class="links">
-          <a class="btn primary" href="https://iopscience.iop.org/article/10.3847/1538-4357/ae101f/pdf" target="_blank"
-            rel="noopener">View paper</a>
-          <a class="btn" href="https://arxiv.org/abs/2509.07878" target="_blank" rel="noopener">arXiv</a>
-          <a class="btn" href="https://iopscience.iop.org/article/10.3847/1538-4357/ae101f" target="_blank"
-            rel="noopener">DOI</a>
-        </div>
-      </article>
-
-      <article class="paper" aria-labelledby="p1">
-        <p class="meta">The Astrophysical Journal, Volume 985, Issue 1, id.30, 18 pp. (May 2025)</p>
-        <h3 id="p1">The Size of the Continuum Emission Region and Its Scaling Relations with Active Galactic Nucleus
-          Luminosity and the Broad-line Region Size</h3>
-        <p class="meta">Mandal, Amit Kumar ; Woo, Jong-Hak ; Wang, Shu</p>
-        <div class="links">
-          <a class="btn primary" href="https://iopscience.iop.org/article/10.3847/1538-4357/adc56e/pdf" target="_blank"
-            rel="noopener">View paper</a>
-          <a class="btn" href="https://arxiv.org/abs/2502.19184" target="_blank" rel="noopener">arXiv</a>
-          <a class="btn" href="https://iopscience.iop.org/article/10.3847/1538-4357/adc56e" target="_blank"
-            rel="noopener">DOI</a>
-        </div>
-      </article>
-
-      <article class="paper" aria-labelledby="p2">
-        <p class="meta">The Astrophysical Journal, Volume 983, Issue 1, id.45, 13 pp. (April 2025)</p>
-        <h3 id="p2">Seoul National University AGN Monitoring Project. V. Velocity-resolved Hβ Reverberation Mapping and
-          Evidence of Kinematics Evolution</h3>
-        <p class="meta">Wang, Shu ; Woo, Jong-Hak ; Barth, Aaron J. ; Bennert, Vardha N. ; Gallo, Elena ; Hodges-Kluck,
-          Edmund ; Kim, Minjin ; Rakshit, Suvendu ; Treu, Tommaso ; Cho, Hojin ; Kabasares, Kyle M. ; Malkan, Matthew A.
-          ; Mandal, Amit Kumar ; Son, Donghoon ; U, Vivian ; Villafana, Lizvette</p>
-        <div class="links">
-          <a class="btn primary" href="https://iopscience.iop.org/article/10.3847/1538-4357/adbca5/pdf" target="_blank"
-            rel="noopener">View paper</a>
-          <a class="btn" href="https://arxiv.org/abs/2505.15073" target="_blank" rel="noopener">arXiv</a>
-          <a class="btn" href="https://iopscience.iop.org/article/10.3847/1538-4357/adbca5" target="_blank"
-            rel="noopener">DOI</a>
-        </div>
-      </article>
-
-      <article class="paper" aria-labelledby="p3">
-        <p class="meta">The Astrophysical Journal, Volume 981, Issue 2, id.129, 11 pp. (March 2025)</p>
-        <h3 id="p3">Dormancy and Reawakening over Years: Eight New Recurrent Changing-look AGNs</h3>
-        <p class="meta">Wang, Shu ; Woo, Jong-Hak ; Gallo, Elena ; Son, Donghoon ; Yang, Qian ; Jin, Junjie ;
-          Guo, Hengxiao ; Kong, Minzhi</p>
-        <div class="links">
-          <a class="btn primary" href="https://iopscience.iop.org/article/10.3847/1538-4357/adadf3/pdf" target="_blank"
-            rel="noopener">View paper</a>
-          <a class="btn" href="https://arxiv.org/abs/2410.15587" target="_blank" rel="noopener">arXiv</a>
-          <a class="btn" href="https://iopscience.iop.org/article/10.3847/1538-4357/adadf3" target="_blank"
-            rel="noopener">DOI</a>
-        </div>
-      </article>
-
-      <article class="paper" aria-labelledby="p3">
-        <p class="meta">The Astrophysical Journal, Volume 980, Issue 2, id.177, 10 pp. (February 2025)</p>
-        <h3 id="p3">Prediction of Star Formation Rates Using an Artificial Neural Network</h3>
-        <p class="meta">Ayubinia, Ashraf ; Woo, Jong-Hak ; Hafezianzadeh, Fatemeh ; Kim, Taehwan ; Kim, Changseok </p>
-        <div class="links">
-          <a class="btn primary" href="https://iopscience.iop.org/article/10.3847/1538-4357/ada366/pdf" target="_blank"
-            rel="noopener">View paper</a>
-          <a class="btn" href="https://arxiv.org/abs/2412.17446" target="_blank" rel="noopener">arXiv</a>
-          <a class="btn" href="https://iopscience.iop.org/article/10.3847/1538-4357/ada366" target="_blank"
-            rel="noopener">DOI</a>
-        </div>
-      </article>
-
-      <div class="year">2024</div>
-
-      <article class="paper" aria-labelledby="p4">
-        <p class="meta">The Astrophysical Journal Supplement Series, Volume 275, Issue 1, id.13, 16 pp. (November 2024)
-        </p>
-        <h3 id="p4">Revisiting the Hβ Size–Luminosity Relation Using a Uniform Reverberation-mapping Analysis</h3>
-        <p class="meta">Wang, Shu ; Woo, Jong-Hak </p>
-        <div class="links">
-          <a class="btn primary" href="https://iopscience.iop.org/article/10.3847/1538-4365/ad74f2/pdf" target="_blank"
-            rel="noopener">View paper</a>
-          <a class="btn" href="https://arxiv.org/abs/2408.15872" target="_blank" rel="noopener">arXiv</a>
-          <a class="btn" href="https://iopscience.iop.org/article/10.3847/1538-4365/ad74f2" target="_blank"
-            rel="noopener">DOI</a>
-        </div>
-      </article>
-
-      <article class="paper" aria-labelledby="p5">
-        <p class="meta">The Astrophysical Journal, Volume 969, Issue 2, id.93, 14 pp. (July 2024)</p>
-        <h3 id="p4">Constraining the Low-mass End of the Black Hole Mass Function and the Active Fraction of the
-          Intermediate-mass Black Holes</h3>
-        <p class="meta">Hojin Cho; Jong-Hak Woo</p>
-        <div class="links">
-          <a class="btn primary" href="https://iopscience.iop.org/article/10.3847/1538-4357/ad4966/pdf" target="_blank"
-            rel="noopener">View paper</a>
-          <a class="btn" href="#" target="_blank" rel="noopener">arXiv</a>
-          <a class="btn" href="https://iopscience.iop.org/article/10.3847/1538-4357/ad4966" target="_blank"
-            rel="noopener">DOI</a>
-        </div>
-      </article>
-
-      <article class="paper" aria-labelledby="p6">
-        <p class="meta">The Astrophysical Journal, Volume 968, Issue 2, id.59, 28 pp. (June 2024)</p>
-        <h3 id="p4">Revisiting the Dust Torus Size–Luminosity Relation Based on a Uniform Reverberation-mapping Analysis
-        </h3>
-        <p class="meta">Amit Kumar Mandal; Jong-Hak Woo; Shu Wang; Suvendu Rakshit; Hojin Cho; Donghoon Son; C. S.
-          Stalin</p>
-        <div class="links">
-          <a class="btn primary" href="#" target="_blank" rel="noopener">View paper</a>
-          <a class="btn" href="#" target="_blank" rel="noopener">arXiv</a>
-          <a class="btn" href="#" target="_blank" rel="noopener">DOI</a>
-        </div>
-      </article>
-
-      <article class="paper" aria-labelledby="p7">
-        <p class="meta">The Astrophysical Journal, Volume 966, Issue 1, id.128, 17 pp. (May 2024)</p>
-        <h3 id="p4">Identifying Changing-look AGNs Using Variability Characteristics</h3>
-        <p class="meta">Shu Wang; Jong-Hak Woo; Elena Gallo; Hengxiao Guo; Donghoon Son; Minzhi Kong; Amit Kumar Mandal;
-          Hojin Cho; Changseok Kim; Jaejin Shin</p>
-        <div class="links">
-          <a class="btn primary" href="#" target="_blank" rel="noopener">View paper</a>
-          <a class="btn" href="#" target="_blank" rel="noopener">arXiv</a>
-          <a class="btn" href="#" target="_blank" rel="noopener">DOI</a>
-        </div>
-      </article>
-
-      <article class="paper" aria-labelledby="p7">
-        <p class="meta">The Astrophysical Journal, Volume 962, Issue 1, id.67, 31 pp. (February 2024)</p>
-        <h3 id="p4">The Seoul National University AGN Monitoring Project. III. Hβ Lag Measurements of 32 Luminous Active
-          Galactic Nuclei and the High-luminosity End of the Size–Luminosity Relation</h3>
-        <p class="meta">Shu Wang; Jong-Hak Woo; Elena Gallo; Hengxiao Guo; Donghoon Son; Minzhi Kong; Amit Kumar Mandal;
-          Hojin Cho; Changseok Kim; Jaejin Shin</p>
-        <div class="links">
-          <a class="btn primary" href="https://iopscience.iop.org/article/10.3847/1538-4357/ad132f/pdf" target="_blank"
-            rel="noopener">View paper</a>
-          <a class="btn" href="https://arxiv.org/abs/2311.15518" target="_blank" rel="noopener">arXiv</a>
-          <a class="btn" href="https://iopscience.iop.org/article/10.3847/1538-4357/ad132f" target="_blank"
-            rel="noopener">DOI</a>
-        </div>
-      </article>
-
-
-
+      <!-- Dynamically rendered publications list from publications_data.js -->
+      <div id="publications-list"></div>
+      <script src="publications_data.js"></script>
+      <script src="publications.js"></script>
 
       <div class="back-row">
         <a href="index.html#main" class="link">← Back to Home</a>

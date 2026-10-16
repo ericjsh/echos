@@ -524,35 +524,14 @@
 
 <body>
   <!-- ====================== NAV ====================== -->
-  <header class="site-header">
-    <div class="container nav-inner">
-      <a class="brand" href="index.html" aria-label="Go to home">
-        <span class="brand-mark"><img src="snuecho_banner_design.001.png" alt="M"></span>
-      </a>
-
-      <!-- Mobile menu toggle + button (order matters: input → label → nav) -->
-      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">
-      <label for="nav-toggle" class="hamburger" aria-label="Open menu">
-        <span></span><span></span><span></span>
-      </label>
-
-      <nav id="primary-nav" class="nav" aria-label="Primary">
-        <a href="research.html">Research</a>
-        <a href="projects.html">Projects</a>
-        <a class="active" href="people.html">People</a>
-        <a href="publications.html">Publications</a>
-        <a href="contact.html"
-          style="background-color: var(--blue); color: #fff; padding: 8px 14px; border-radius: 999px; font-weight: 600; opacity: 1;">For
-          Prospective PhD Students</a>
-      </nav>
-    </div>
-  </header>
+  <div id="site-header"></div>
+  <script src="nav.js"></script>
 
   <main>
     <!-- ====================== PAGE HERO ====================== -->
     <section class="page-hero">
       <div class="container">
-        <h1>People</h1>
+        <h1>Members</h1>
         <p>Professor, post‑docs, graduate students, interns, and alumni of the SNU ECHOS Research Group.</p>
       </div>
     </section>
@@ -598,7 +577,7 @@
 
       <!-- Post‑docs -->
       <section class="group" aria-labelledby="g-postdoc">
-        <h2 id="g-postdoc">Post‑docs</h2>
+        <h2 id="g-postdoc">Postdoctoral Researchers</h2>
         <div class="people-grid">
 
         </div>
@@ -606,7 +585,7 @@
 
       <!-- Graduate Students -->
       <section class="group" aria-labelledby="g-grad">
-        <h2 id="g-grad">Graduate Students</h2>
+        <h2 id="g-grad">PhD Students</h2>
         <div class="people-grid">
 
 
@@ -676,7 +655,7 @@
 
       <!-- Interns -->
       <section class="group" aria-labelledby="g-interns">
-        <h2 id="g-interns">Interns</h2>
+        <h2 id="g-interns">Undergraduate Interns</h2>
         <div class="people-grid">
 
 
