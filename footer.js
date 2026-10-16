@@ -23,7 +23,7 @@
     '    <div class="microfooter">',
     '      <small>© <span id="year">' + currentYear + '</span> SNU ECHOS</small>',
     '      <small>Images credited in-page via ⓘ popovers</small>',
-    '      <small>Beta v0.3.0 • Updated <time id="lastmod">' + lastModDate + '</time></small>',
+    '      <small>Beta v0.4.1 • Updated <time id="lastmod">' + lastModDate + '</time></small>',
     '    </div>',
     '',
     '  </div>',
